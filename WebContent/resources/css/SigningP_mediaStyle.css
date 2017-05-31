@@ -1,0 +1,93 @@
+/***响应式 媒体查询相应公用样式  引入在“SigningP_common.css”后面***/
+
+
+/************** >=1024 ****************/
+@media(max-width: 1024px){
+    #stepContent{
+        padding: 0 15px;
+    }
+}/* >=1024 */
+
+
+/************** >=640 ****************/
+@media(max-width: 640px){
+    .form_box input{
+        width: 70%;
+    }
+    .form_box select{
+        width: 70%;
+        margin-bottom: 5px;
+    }
+    .form_box input[class*="shopHours_"]{
+        width: 30%;
+    }
+    .shop_int{
+        width: 70%;
+    }
+    .form_box .callInput{
+        width: 70%;
+    }
+    .callTest{
+        width: 55px;
+        margin-left: -55px;
+    }
+    .form_box .callInput{
+        padding-right: 60px;
+    }
+
+}/* >=640 */
+
+/************** >=480 ****************/
+@media(max-width: 480px){
+    #stepBar{
+        height: 50px;
+    }
+    #stepBar ul li{
+        font-size: 14px;
+        line-height: 50px;
+        height: 50px;
+    }
+    #stepBar ul li:not(:first-of-type):before,
+    #stepBar ul li:not(:last-of-type):after {
+        width: 12.5px;
+        height: 50px;
+        background-size: 25px 50px;
+    }
+    #stepBar ul li:not(:first-of-type):before {
+        background-position: -12.5px 0;
+    }
+    
+    .shopHours_timeBox{
+        width: 250px;
+    }
+
+}/* >=480 */
+
+
+
+/************** >=320 ****************/
+@media(max-width: 320px){
+    #stepBar{
+        height: 40px;
+    }
+    #stepBar ul li{
+        font-size: 12px;
+        line-height: 40px;
+        height: 40px;
+    }
+    #stepBar ul li:not(:first-of-type):before,
+    #stepBar ul li:not(:last-of-type):after {
+        width: 10px;
+        height: 40px;
+        background-size: 20px 40px;
+    }
+    #stepBar ul li:not(:first-of-type):before {
+        background-position: -10px 0;
+    }
+    .stepForm_item>label,
+    .form_box,
+    .stepForm_item.longItem>label,
+    .stepForm_item.longItem .form_box {
+        width: 100%;
+    }
+}/* >=320 */

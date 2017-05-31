@@ -1,0 +1,676 @@
+/*样式初始化*/
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body,h1,h2,h3,p,dl,dd,ol,ul,th,td,form,fieldset,input,button,textarea{margin:0;padding:0;color: #333;}
+body,input{font-family:"Microsoft YaHei", arial;}
+h1,h2,h3,input,button,textarea,select{font-size: 100%;}
+h1,h2,h3,h4,h5,h6{  font-weight: normal;margin: 0;}
+ul{list-style: none;}
+table{border-collapse:collapse;}
+em,s,i,b{font-style:normal;}
+body,input,button,textarea,select,option{font-size:100%;}
+a,input,textarea{text-decoration:none;outline:0;}
+li,img,label,input{vertical-align:middle;}
+img{border:0;}
+
+
+.clear:after{content:""; display:block; height:0;line-height: 0; visibility:hidden; clear:both; }
+/**栅格系统**/
+.row{ margin: 0 -15px;}
+.col-12 {  width: 100%;  }
+.col-11 {  width: 91.66666667%;  }
+.col-10 {  width: 83.33333333%;  }
+.col-9 {  width: 75%;  }
+.col-8 {  width: 66.66666667%;  }
+.col-7 {  width: 58.33333333%;  }
+.col-6 {  width: 50%;  }
+.col-5 {  width: 41.66666667%;  }
+.col-4 {  width: 33.33333333%;  }
+.col-3 {  width: 25%;  }
+.col-2 {  width: 16.66666667%;  }
+.col-1 {  width: 8.33333333%;  }
+[class*="col-"]{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+body{background-color: #fff;}
+
+
+
+/**********************************************************************/
+/**********************************************************************/
+/**********************************************************************/
+
+#stepBar{
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1986;
+}
+#stepBar ul{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+}
+#stepBar ul li{
+    float: left;
+    width: 25%;
+    height: 60px;
+    background-color: #e5e5e5;
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    overflow: hidden;
+}
+#stepBar ul li:not(:first-of-type):before,
+#stepBar ul li:not(:last-of-type):after{
+    content: "";
+    display: block;
+    width: 15px;
+    height: 60px;
+    background-image: url("../img/stepBar_bg.png");
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+#stepBar ul li:not(:first-of-type):before{
+    background-position: -15px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#stepBar ul li:not(:last-of-type):after{
+    background-position: 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#stepBar ul li.active{
+    background-color: #d73938;
+    color: #fff;
+}
+#stepContent{
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 90px;
+}
+.step_form{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.step_next{
+    display: block;
+    width: 80px;
+    height: 35px;
+    border-radius: 4px;
+    background-color: #ccc;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 35px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom:20px;
+    cursor: pointer;
+}
+.step_next.istrue{
+    background-color: #d73938;
+}
+.step_form div[class*="stepBox_"]{
+    width: 100%;
+}
+.stepForm_item{
+    width: 100%;
+    position: relative;
+    line-height: 35px;
+    margin-bottom: 30px;
+}
+.dcm_Protocol{
+    width: 100%;
+    height: 300px;
+    overflow-y: auto;
+    border:1px solid #ccc;
+    padding: 5px;
+}
+.dcm_Protocol p{
+    line-height: 20px;
+    font-size: 14px;
+}
+.stepBox_01 .stepForm_item{
+    padding-left: 20px;
+}
+.SigningP_a{
+    text-align: right;
+    margin-bottom: 20px;
+}
+.SigningP_a>a{
+    font-size: 16px;
+    color: #38a1d6;
+    cursor: pointer;
+}
+.SigningP_a>a:hover{
+    color: #d73938;
+}
+
+.stepForm_item:after{
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.stepForm_item>label{
+    float: left;
+    min-width: 110px;
+    line-height: 35px;
+}
+.stepForm_item.longItem>label{
+    width: 150px;
+}
+.stepForm_item.longItem .form_box{
+    width: calc(100% - 150px);
+    padding-top: 6px;
+}
+.form_box{
+    float: left;
+    width: calc(100% - 110px);
+    position: relative;
+
+}
+.form_box:after{
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.form_box input{
+    padding: 0 5px;
+    width: 50%;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #ccc;
+}
+
+.form_box select{
+    float: left;
+    padding: 0 5px;
+    width: 20%;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+}
+.from_hr{
+    width: 100%;
+    height: 0;
+    border-top: 1px dashed #ccc;
+    margin-bottom: 30px;
+}
+.mapBtn{
+    display: inline-block;*display: inline;*zoom: 1;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.form_box input[class*="shopHours_"]{
+    display: inline-block;*display: inline;*zoom: 1;
+    width: 20%;
+}
+
+
+/*时间选择弹层*/
+.shopHours_List {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1986;
+    background-color: rgba(0, 0, 0, 0.7);
+    display:none;
+}
+.shopHours_timeBox {
+    width: 348px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background-color: #fff;
+}
+
+.timeBox_showtime{
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    background-color: #d73938;
+    color: #fff;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    cursor: move;
+}
+.timeBox_showtime>span{
+    display: inline-block;*display: inline;*zoom: 1;
+}
+.shopHours_timeBox_btns{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.shopHours_timeBox_btns a{
+    display: inline-block;*display: inline;*zoom: 1;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    background-color: #363f45;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+.shopHours_timeBox_btns .timeBox_btns_canc{
+    margin-right: 30px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    color: #343434;
+}
+.shopHours_timeBox ul li{
+    width: 100%;
+    cursor: pointer;
+}
+.shopHours_timeBox ul li.active{
+    color: #d73938;
+    font-weight: bold;
+}
+.shopHours_timeBox ul li:hover{
+    background-color: #f7f7f7;
+}
+.shopHours_timeBox ul{
+    float: left;
+    height: 210px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.shopHours_timeBox .shopHours_format{
+    float: left;
+    width: 10%;
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+    font-size: 30px;
+    color: #929292;
+}
+.shopHours_timeBox .hhLIsit{
+    width: 45%;
+    float: left;
+}
+.shopHours_timeBox .mmLIsit{
+    width: 45%;
+    float: right;
+}
+
+/*时间选择弹层*/
+.shopHours_start{
+    margin-right: 5px;
+}
+.shopHours_end{
+    margin-left: 5px;
+}
+
+.shop_int{
+    resize: none;
+    width: 50%;
+    text-align: left;
+    line-height: 20px;
+    font-size: 14px;
+    height: 100px;
+}
+
+/*******餐厅实拍********/
+
+.z_photo img {
+    width: 100px;
+    height: 100px;
+}
+
+.z_addImg {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.z_addImg:hover::after{
+    content: "";
+    display: block;
+    width: 17px;
+    height: 21px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: url("../img/delimg.png") no-repeat;
+    background-size: 17px 21px;
+}
+
+.z_file {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: url("../img/z_add.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.z_file .shopimg {
+    width: 100px;
+    height: 100px;
+    display: block;
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.z_file input::-webkit-file-upload-button {
+    width: 100px;
+    height: 100px;
+    border: none;
+    position: absolute;
+    outline: 0;
+    opacity: 0;
+}
+
+/*遮罩层*/
+
+.z_mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.z_alert {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    background: #fff;
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -100px;
+}
+
+.z_alert p:nth-child(1) {
+    line-height: 150px;
+}
+
+.z_alert p:nth-child(2) span {
+    display: inline-block;
+    width: 49%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    border-top: 1px solid #ddd;
+}
+
+.z_cancel {
+    color: #999;
+    border-right: 1px solid #ddd;
+}
+
+
+.form_box .callInput{
+    width: 40%;
+}
+.callTest{
+    display: inline-block;
+    width: 10%;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 35px;
+    font-size: 14px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.callTest:hover{
+    background-color: #d73938;
+    color: #fff;
+}
+.explain{
+    width: 100%;
+    color: #999;
+    line-height: 24px;
+    font-size: 14px;
+}
+.busLic_Box,
+.atto_Box,
+.DCMcontract_Box{
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+}
+.busLic_Box:after,
+.atto_Box:after,
+.DCMcontract_Box:after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    clear: both;
+    position: relative;
+}
+input.busLic::-webkit-file-upload-button ,
+input.atto::-webkit-file-upload-button ,
+input.DCMcontract::-webkit-file-upload-button {
+    width: 100px;
+    height: 35px;
+    border: none;
+    position: absolute;
+    outline: 0;
+    opacity: 0;
+}
+.busLic_Box input.busLic,
+.atto_Box input.atto,
+.DCMcontract_Box input.DCMcontract{
+    width: 100px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+.busLic_text,
+.atto_text,
+.DCMcontract_text{
+    text-align: center;
+    display: block;
+    width: 100px;
+    height: 35px;
+    color: #666;
+    line-height: 35px;
+    font-size: 14px;
+    padding: 0 5px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.busLic_name,
+.atto_name,
+.DCMcontract_name{
+    display: block;
+    vertical-align: top;
+    line-height: 35px;
+    font-size: 14px;
+    color: #999;
+    position: absolute;
+    top: 0;
+    left: 110px;
+    max-width: calc(100% - 110px);
+
+    /*单行溢出*/
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.busLic_img,
+.DCMcontract_img,
+.atto_img{
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.busLic_img img,
+.DCMcontract_img img,
+.atto_img img{
+    width: 100%;
+    height: 100%;
+}
+.atto_downFile,
+.DCMcontract_downFile{
+    display: block;
+    width: 100px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    background-color: #38a1d6;
+    color: #fff;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.atto_downFile:hover,
+.DCMcontract_downFile:hover {
+    background-color: #318ebd;
+}
+.QRcode{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.QRcode img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.QR_text{
+    line-height: 30px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.QR_icon{
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 19.2px;
+    background: url("../img/QRcode_icon.png") no-repeat;
+    background-size: 18px 19.2px;
+    margin-right: 5px;
+}
+.moneyBox{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+.QR_table{
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.QR_table td{
+    padding: 10px 5px;
+    vertical-align: top;
+    line-height: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.phone_aboutme{
+    padding-left: 46px;
+    position: relative;
+    background: url("../img/icon_phone.png") no-repeat;
+    background-size: 36px 36px;
+    margin-bottom: 30px;
+}
+.phone_aboutme p {
+    line-height: 18px;
+    color: #999;
+}
+
+#allMap{
+    width: 100%;
+    height: 260px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    display: none;
+}
+
+.closeMap{
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+
+
