@@ -1,12 +1,22 @@
 package com.hpf.service;
 
+import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+
 import com.hpf.model.PayModel;
 import com.hpf.util.Generator;
+import com.hpf.util.HttpsRequest;
 import com.hpf.util.WeChatSignature;
 import com.hpf.util.XStreamUtil;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
+
+
 
 
 public class WechatPay {
@@ -54,6 +64,16 @@ public class WechatPay {
 		XStreamUtil.xstream.alias("xml", PayModel.class);
 		String requestxml=XStreamUtil.xstream.toXML(payModel);
 		System.out.println("xml="+requestxml);
+		
+		//∑¢ÀÕhttps«Î«Û
+		try {
+			String responsexml = HttpsRequest.HttpsRequest("https://www.baidu.com", "POST", requestxml);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		return "pay";
 	}

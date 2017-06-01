@@ -14,7 +14,7 @@ import javax.net.ssl.TrustManager;
 public class HttpsRequest {
 
 	
-	public static void HttpsRequest(String requestUrl,String requestMethod,String outStr) throws Exception{
+	public static String HttpsRequest(String requestUrl,String requestMethod,String outStr) throws Exception{
 		
 		   //	      创建	SSLContext
 		     SSLContext  sslContext=SSLContext.getInstance("SSL","SunJSSE");
@@ -37,7 +37,8 @@ public class HttpsRequest {
 		String line=null;while((line=br.readLine())!=null){ buffer.append(line);}
 				
 		//打印数据
-		        System.out.println( buffer.toString());}	
+		        System.out.println( buffer.toString());
+				return line;}	
 	
 
 	
