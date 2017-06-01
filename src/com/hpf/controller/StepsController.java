@@ -40,6 +40,8 @@ public class StepsController {
     	
     	/*上传文件 */   	
     	//多个文件
+    	
+    	System.out.println("viewfiles.length="+viewfiles.length);;
         if(viewfiles!=null && viewfiles.length>0){  
             for(int i = 0;i<viewfiles.length;i++){  
                 MultipartFile file = viewfiles[i];  
