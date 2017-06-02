@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="resources/css/SigningP_common.css"/>
     <link rel="stylesheet" href="resources/css/SigningP_mediaStyle.css"/>
     <script type="text/javascript" src="resources/js/SigningP_conmon.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.qrcode.min.js"></script>
 
     <!--[if lt IE 9]>
     <script type="text/javascript" src="resources/js/html5shiv.min.js"></script>
@@ -334,7 +335,7 @@
     <div class="stepBox_04" style="display: none;">
         <p class="SigningP_a"><a href="explain" target="_blank">点餐猫商家签约流程详细说明&gt;&gt;</a></p>
         <div class="QRcode">
-
+		<div id="payqrcode"></div>
         </div>
         <p class="QR_text"><i class="QR_icon"></i>请使用微信扫描二维码以完成支付。</p>
 
@@ -489,6 +490,11 @@ $(function () {
     $(".shop_map").bind('focus',function () {
         openMapFun();//开启地图
     });
+    
+    //生成二维码
+    jQuery(function(){
+	jQuery('#payqrcode').qrcode("http://baidu.com");
+	})
 
 
 
