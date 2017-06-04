@@ -20,15 +20,16 @@ public class RegionDAOImp implements RegionDAO {
 	
 	@Override
 	public List getRegionInfo(RegionModel regionModel) {
-    String sql ="select id, name, pid, regLevel from ec_sys_region;";	
+		String id="2472";
+    String sql ="select name from ec_sys_region where id+"+id;	
+    
 	JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 	try {
-		String result = (String)jdbcTemplate.queryForObject(sql, java.lang.String.class);
-		System.out.println("½á¹û="+result);
+		String result = jdbcTemplate.queryForObject(sql, java.lang.String.class);
 		System.out.println("00000000000");
 	} catch (Exception e) {
 		// TODO: handle exception
-		System.out.println("11111111111");
+		System.out.println("2222222222");
 	}
 
 		
