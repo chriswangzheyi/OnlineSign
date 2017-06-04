@@ -25,9 +25,9 @@
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/web" />
+        <property name="url" value="jdbc:mysql://115.29.164.111:14610/ecdb3" /> <!-- 产品数据库 -->
         <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="password" value="98qB!=>W8Iap" />
     </bean>
 	
   <!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->     

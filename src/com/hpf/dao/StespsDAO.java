@@ -2,7 +2,7 @@ package com.hpf.dao;
 
 import com.hpf.model.UserModel;
 
-public interface UserDAO {
+public interface StespsDAO {
 	
 	public String submitForm(UserModel loginmodel);
 

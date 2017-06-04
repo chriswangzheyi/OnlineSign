@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.hpf.util.MD5;
+
 
 public class WeChatSignature {
 	

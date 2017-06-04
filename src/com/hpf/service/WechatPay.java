@@ -68,6 +68,7 @@ public class WechatPay {
 		//∑¢ÀÕhttps«Î«Û
 		try {
 			String responsexml = HttpsRequest.HttpsRequest("https://www.baidu.com", "POST", requestxml);
+			System.out.println("responsexml="+responsexml);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
