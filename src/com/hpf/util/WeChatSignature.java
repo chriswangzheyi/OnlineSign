@@ -32,7 +32,9 @@ public class WeChatSignature {
 		
 	   sb.append("key="+Key);
 
+	   System.out.println("sb="+sb);
 		String sign = MD5.MD5Encode( sb.toString(),"UTF-8").toUpperCase();
+
 		return sign;	
 	}	
 

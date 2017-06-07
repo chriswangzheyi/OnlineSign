@@ -11,6 +11,12 @@ public class PayModel {
 	private int total_fee; //总金额,单位为分
 	private String spbill_create_ip;//终端ip
 	private String trade_type; //交易类型
+	private String device_info;
+	private String key;
+	private String service;
+	private String mch_create_ip;
+	private String notify_url;
+	
 	
 	//getter and setter
 	public String getAppid() {
@@ -67,10 +73,36 @@ public class PayModel {
 	public void setTrade_type(String trade_type) {
 		this.trade_type = trade_type;
 	}
-	
-	
-
-
+	public String getDevice_info() {
+		return device_info;
+	}
+	public void setDevice_info(String device_info) {
+		this.device_info = device_info;
+	}
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	public String getService() {
+		return service;
+	}
+	public void setService(String service) {
+		this.service = service;
+	}
+	public String getMch_create_ip() {
+		return mch_create_ip;
+	}
+	public void setMch_create_ip(String mch_create_ip) {
+		this.mch_create_ip = mch_create_ip;
+	}
+	public String getNotify_url() {
+		return notify_url;
+	}
+	public void setNotify_url(String notify_url) {
+		this.notify_url = notify_url;
+	}
 	
 	
 	

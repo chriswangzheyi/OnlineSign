@@ -33,12 +33,16 @@ public class HttpsRequest {
 		if(outStr!=null){OutputStream os=conn.getOutputStream();os.write(outStr.getBytes("UTF-8"));os.close();}
 		//读取服务端的内容
 		InputStream is=conn.getInputStream();InputStreamReader isr=new InputStreamReader(is,"utf-8");
-		BufferedReader br=new BufferedReader(isr);buffer=new StringBuffer();
-		String line=null;while((line=br.readLine())!=null){ buffer.append(line);}
+		BufferedReader br=new BufferedReader(isr);
+		buffer=new StringBuffer();
+		String line=null;
+		
+		while(
+				(line=br.readLine())!=null)
+		{ buffer.append(line);}
 				
-		//打印数据
-		        System.out.println( buffer.toString());
-				return line;}	
+		
+				return buffer.toString();}	
 	
 
 	

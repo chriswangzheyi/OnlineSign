@@ -75,9 +75,12 @@
                 <input id='shop_name' class=" " type="text" name="restaurant_name"/>
             </div>
         </div>
+        
+        <a href="updateregion" target="_blank">更新地区</a>
+        <a class="updateregion" href="updateregion" target="_blank">更新地区</a>
         <!--所在地区-->
         <div class="stepForm_item">
-            <label>所在地区：</label>
+            <label>所在地区：</label>     
             <div class="form_box">
                 <select class="shopIp_SS" name="restaurant_province">
                     <option value="-1">请选择省市</option>

@@ -7,27 +7,28 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.hpf.model.PayModel;
 import com.hpf.util.MD5;
 
 
 public class WeChatSignature {
 	
-	public static String sign(){
+	public static String sign(PayModel paymodel){
 		
-		String appid="11";
-		String mch_id="22";
-		String device_info="33";
-		String body="44";
-		String nonce_str="55";
+
 	
 		SortedMap<Object, Object> parameters = new TreeMap<Object, Object>();
-		parameters.put("appid", appid);
-		parameters.put("mch_id", mch_id);
-		parameters.put("device_info", device_info);
-		parameters.put("body", body);
-		parameters.put("nonce_str", nonce_str);
+		parameters.put("appid", paymodel.getAppid());
+		parameters.put("mch_id", paymodel.getMch_id());
+		parameters.put("device_info", paymodel.getDevice_info());
+		parameters.put("body", paymodel.getBody());
+		parameters.put("nonce_str", paymodel.getNonce_str());
+		parameters.put("key", paymodel.getKey());
+		parameters.put("mch_create_ip", paymodel.getMch_create_ip());
+		parameters.put("notify_url", paymodel.getNotify_url());
 		
-		String Key="111111";
+		
+
 		StringBuffer sb = new StringBuffer();
 		Set es= parameters.entrySet();
 		Iterator<?> it = es.iterator();
@@ -43,17 +44,12 @@ public class WeChatSignature {
 			}
 		}
 		
-	   sb.append("key="+Key);
+	   sb.append("key="+paymodel.getKey());
 		
 		String sign = MD5.MD5Encode( sb.toString(),"UTF-8").toUpperCase();
 		
 		System.err.println("sign:"+sign);
 		return null;	
-	}
-	
-	public static void main(String[] args) {
-		sign();
-	}
-	
+	}	
 
 }

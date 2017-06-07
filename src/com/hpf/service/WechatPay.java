@@ -1,20 +1,17 @@
 package com.hpf.service;
 
-import java.util.List;
+
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
+
 
 import com.hpf.model.PayModel;
 import com.hpf.util.Generator;
 import com.hpf.util.HttpsRequest;
 import com.hpf.util.WeChatSignature;
 import com.hpf.util.XStreamUtil;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
+
 
 
 
@@ -26,48 +23,55 @@ public class WechatPay {
 	public static String Wchatpayment(){
 		
 		//参数
-	    String appid="11";//公众号id
-		String mch_id="11"; //商户号
-		String nonce_str=Generator.getRandomNonceStr(20); //随机字符串
-		String body="11"; //商品描述
-		String out_trade_no="11"; //订单号
+		String service="pay.weixin.native";
+		String mch_id="7551000001"; //商户号
+		String out_trade_no=Generator.getRandomNonceStr(32); //订单号
+		String body="测试"; //商品描述
 		int total_fee=1; //总金额,单位为分
-		String spbill_create_ip="11";//终端ip
-		String trade_type="NATIVE"; //交易类型
-		String notifyrl="www.sss.com";
-		String key="111";
-	
+		String mch_create_ip="218.70.106.206";
+		String notify_url="http://zhangwei.dev.swiftpass.cn/native-pay/testPayResult";
+		String key="9d101c97133837e13dde2d32a5054abb";
+		String nonce_str=Generator.getRandomNonceStr(32);
+
 	
 		SortedMap<Object, Object> parameters = new TreeMap<Object, Object>();
-		parameters.put("appid", appid);
+		parameters.put("service", service);
 		parameters.put("mch_id", mch_id);
-		parameters.put("nonce_str", nonce_str);
-		parameters.put("body", body);
 		parameters.put("out_trade_no", out_trade_no);
+		parameters.put("body", body);
 		parameters.put("total_fee", total_fee);
-		parameters.put("spbill_create_ip", spbill_create_ip);
-		parameters.put("trade_type", trade_type);
-		parameters.put("notifyrl", notifyrl);
-
+		parameters.put("mch_create_ip", mch_create_ip);
+		parameters.put("notify_url", notify_url);
+		parameters.put("nonce_str", nonce_str);
+		
+	
+		
 		String sign =WeChatSignature.sign(parameters, key);
-		System.out.println("&&&&&&&sign="+sign);
+		System.out.println("签名="+sign);
+
 		
 		PayModel payModel = new PayModel();
-		payModel.setAppid(appid);
-		payModel.setBody(body);
+
 		payModel.setMch_id(mch_id);
-		payModel.setNonce_str(nonce_str);
+
 		payModel.setOut_trade_no(out_trade_no);
-		payModel.setSpbill_create_ip(spbill_create_ip);
 		payModel.setTotal_fee(total_fee);
-		payModel.setTrade_type(trade_type);
+		payModel.setSign(sign);
+		payModel.setService(service);
+		payModel.setMch_create_ip(mch_create_ip);
+		payModel.setNotify_url(notify_url);
+		payModel.setBody(body);
+		payModel.setNonce_str(nonce_str);
+		
 		XStreamUtil.xstream.alias("xml", PayModel.class);
 		String requestxml=XStreamUtil.xstream.toXML(payModel);
+	    requestxml=requestxml.replace("__", "_"); 
 		System.out.println("xml="+requestxml);
 		
 		//发送https请求
 		try {
-			String responsexml = HttpsRequest.HttpsRequest("https://www.baidu.com", "POST", requestxml);
+			System.out.println("开始请求");
+			String responsexml = HttpsRequest.HttpsRequest("https://pay.swiftpass.cn/pay/gateway", "POST", requestxml);
 			System.out.println("responsexml="+responsexml);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

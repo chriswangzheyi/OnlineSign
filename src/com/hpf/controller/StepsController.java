@@ -31,8 +31,6 @@ public class StepsController {
 	//初始页面
     @RequestMapping(value="/")  
     public String home(ModelMap model) { 
-    	List regioninfo= getregioninfo.getRegionInformation();
-    	
     	return "steps";  
     }  
 
@@ -42,9 +40,6 @@ public class StepsController {
     public String fileUpload(@RequestParam("viewfiles") MultipartFile[] viewfiles,
     	    @RequestParam(value = "licensefile", required = false) MultipartFile licensefile,
     		HttpServletRequest request
-    		
-    		
-    		
     		) { 
 
     	
@@ -94,6 +89,12 @@ public class StepsController {
     } 
     
     
+    //更新地区信息
+    @RequestMapping(value="/updateregion") 
+    public void updateRegion(){
+    	getregioninfo.getRegionInformation();
+    	
+    }
     
     
     

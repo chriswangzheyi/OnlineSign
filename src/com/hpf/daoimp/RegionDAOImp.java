@@ -1,5 +1,9 @@
 package com.hpf.daoimp;
 
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 
@@ -9,7 +13,9 @@ import org.springframework.stereotype.Repository;
 
 import com.hpf.dao.RegionDAO;
 import com.hpf.model.RegionModel;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+import net.sf.json.JSONArray;
+
 
 @Repository("RegionDAO")
 public class RegionDAOImp implements RegionDAO {
@@ -18,18 +24,20 @@ public class RegionDAOImp implements RegionDAO {
 	DataSource datasource;
 	
 	
+	
 	@Override
 	public List getRegionInfo(RegionModel regionModel) {
-		String id="2472";
-    String sql ="select name from ec_sys_region where id+"+id;	
+		String sql ="select id, name, pid,regLevel from ec_sys_region";
+
     
 	JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 	try {
-		String result = jdbcTemplate.queryForObject(sql, java.lang.String.class);
-		System.out.println("00000000000");
+		List<Map<String, Object>> regionList=jdbcTemplate.queryForList(sql);
+        String regionJson =JSONArray.fromObject(regionList).toString();
+        regionModel.setRegionjson(regionJson);
+        System.out.println(regionModel.getRegionjson());
 	} catch (Exception e) {
-		// TODO: handle exception
-		System.out.println("2222222222");
+		System.out.println("读取地区数据库失败");
 	}
 
 		
