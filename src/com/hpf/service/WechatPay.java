@@ -4,21 +4,22 @@ package com.hpf.service;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-
+import org.springframework.stereotype.Component;
 
 import com.hpf.model.PayModel;
 import com.hpf.util.Generator;
 import com.hpf.util.HttpsRequest;
 import com.hpf.util.WeChatSignature;
-import com.hpf.util.XMLDecoder;
+import com.hpf.util.PayNotifyXMLDecoder;
 import com.hpf.util.XStreamUtil;
 
 
+@Component
 public class WechatPay {
 	
 	
 	
-	public static void Wchatpayment(){
+	public void Wchatpayment(){
 		
 		//参数
 		String service="pay.weixin.native";
@@ -27,7 +28,7 @@ public class WechatPay {
 		String body="测试"; //商品描述
 		int total_fee=1; //总金额,单位为分
 		String mch_create_ip="218.70.106.206";
-		String notify_url="/notify";
+		String notify_url="http://1q73x43283.51mypc.cn:36219/paynotify";
 		String key="9d101c97133837e13dde2d32a5054abb";
 		String nonce_str=Generator.getRandomNonceStr(32);
 
@@ -70,16 +71,11 @@ public class WechatPay {
 			System.out.println("开始生成二维码");
 			String responsexml = HttpsRequest.HttpsRequest("https://pay.swiftpass.cn/pay/gateway", "POST", requestxml);
 			System.out.println("responsexml="+responsexml);
-			XMLDecoder.getXMLInfo(responsexml);
+			PayNotifyXMLDecoder.getXMLInfo(responsexml);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	}
-	
-	public static void main(String[] args) {
-		Wchatpayment();
-	}
-	
+	}	
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hpf.service.GetRegionInfoService;
+import com.hpf.service.PayNotifyService;
+import com.hpf.service.WechatPay;
 
 
 
@@ -26,11 +28,15 @@ public class StepsController {
 	
 	@Autowired
 	private GetRegionInfoService getregioninfo;
+	
+	@Autowired
+	private WechatPay WechatPay;
 
     
 	//≥ı º“≥√Ê
     @RequestMapping(value="/")  
-    public String home(ModelMap model) { 
+    public String home(ModelMap model,HttpServletRequest request) { 
+    	WechatPay.Wchatpayment();    	
     	return "steps";  
     }  
 

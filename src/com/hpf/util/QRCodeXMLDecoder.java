@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class XMLDecoder {
+public class QRCodeXMLDecoder {
 	
 	
 	
