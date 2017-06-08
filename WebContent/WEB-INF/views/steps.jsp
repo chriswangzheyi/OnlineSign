@@ -84,26 +84,18 @@
             <div class="form_box">
                 <select class="shopIp_SS" name="restaurant_province">
                     <option value="-1">请选择省市</option>
-                    <option>重庆市</option>
-                    <option>上海市</option>
                 </select>
 
                 <select class="shopIp_DQ" name="restaurant_city">
                     <option value="-1">全部</option>
-                    <option>重庆市</option>
-                    <option>上海市</option>
                 </select>
 
                 <select class="shopIp_QX" name="restaurant_district">
                     <option value="-1">区/县</option>
-                    <option>九龙坡区</option>
-                    <option>渝北区</option>
                 </select>
 
                 <select class="shopIp_JD" name="restaurant_street">
                     <option value="-1">街道</option>
-                    <option>石桥铺</option>
-                    <option>渝州路</option>
                 </select>
             </div>
         </div>
@@ -377,6 +369,121 @@
 
 <script>
 $(function () {
+//TODO 第二步里的城市四级联动：
+    //ajax加载省市
+    $.ajax({
+        type: "POST",
+        url: "resources/data/cityJson.json",
+        data: "json",
+        success: function(data) {
+            $.each(data, function(idx, obj) {
+                if (obj.regLevel == 1) {
+                    var optionEL = $('<option data-id="' +
+                        obj.id + '" ' +
+                        'data-pid="' + obj.pid + '"' +
+                        'value="' + obj.pid + '-' + obj.id + '">' +
+                        obj.name + '' +
+                        '</option>');
+                    $('.shopIp_SS').append(optionEL);
+                }
+            });
+        }
+    });
+
+
+    //点击省市时加载地区
+    $('.shopIp_SS').on('change', function() {
+        $('.shopIp_DQ').html('<option value="-1">全部</option>'); //清空城市
+        $('.shopIp_QX').html('<option value="-1">区/县</option>'); //清空区县
+        $('.shopIp_JD').html('<option value="-1">街道</option>'); //清空街道
+        if (this.value !== '-1') {
+            var datPid = $(this).val().substring($(this).val().indexOf('-') + 1);
+            var optionHTML = '<option value="-1">全部</option>';
+            $.ajax({
+                type: "POST",
+                url: "resources/data/cityJson.json",
+                data: "json",
+                success: function(data) {
+                    $.each(data, function(idx, obj) {
+                        if (obj.pid == datPid) {
+                            optionHTML +=
+                            '<option data-id="' +
+                            obj.id + '" ' +
+                            'data-pid="' + obj.pid + '"' +
+                            'value="' + obj.pid + '-' + obj.id + '">' +
+                            obj.name + '' +
+                            '</option>';
+                        }
+                    });
+                    $('.shopIp_DQ').html(optionHTML);
+                }
+            });
+        }
+    });
+
+
+    //点击地区时加载区县
+    $('.shopIp_DQ').on('change', function() {
+        $('.shopIp_QX').html('<option value="-1">区/县</option>'); //清空区县
+        $('.shopIp_JD').html('<option value="-1">街道</option>'); //清空街道
+        if (this.value !== '-1') {
+            var datPid = $(this).val().substring($(this).val().indexOf('-') + 1);
+            var optionHTML = '<option value="-1">区/县</option>';
+            $.ajax({
+                type: "POST",
+                url: "resources/data/cityJson.json",
+                data: "json",
+                success: function(data) {
+                    $.each(data, function(idx, obj) {
+                        if (obj.pid == datPid) {
+                            optionHTML +=
+                            '<option data-id="' +
+                            obj.id + '" ' +
+                            'data-pid="' + obj.pid + '"' +
+                            'value="' + obj.pid + '-' + obj.id + '">' +
+                            obj.name + '' +
+                            '</option>';
+                        }
+                    });
+                    $('.shopIp_QX').html(optionHTML);
+                    }
+            });
+        }
+    });
+
+
+    //点击区县时加载街道
+    $('.shopIp_QX').on('change', function() {
+        $('.shopIp_JD').html('<option value="-1">街道</option>'); //清空街道
+        if (this.value !== '-1') {
+            var datPid = $(this).val().substring($(this).val().indexOf('-') + 1);
+            var optionHTML = '<option value="-1">街道</option>';
+            $.ajax({
+                type: "POST",
+                url: "resources/data/cityJson.json",
+                data: "json",
+                success: function(data) {
+                    $.each(data, function(idx, obj) {
+                        if (obj.pid == datPid) {
+                            optionHTML +=
+                            '<option data-id="' +
+                            obj.id + '" ' +
+                            'data-pid="' + obj.pid + '"' +
+                            'value="' + obj.pid + '-' + obj.id + '">' +
+                            obj.name + '' +
+                            '</option>';
+                        }
+                    });
+                    $('.shopIp_JD').html(optionHTML);
+                }
+            });
+        }
+    });
+
+
+
+
+
     //TODO 地图
     //动态引入百度地图api.js
 
