@@ -42,8 +42,8 @@ public static void main(String[] args) throws IOException, URISyntaxException {
   
     /**************** 使用智能匹配模版接口发短信(推荐) *****************/  
     //设置您要发送的内容(内容必须和某个模板匹配。以下例子匹配的是系统提供的1号模板）  
-    int temp =1234;
-    String text = "【好觅网】您正在修改您的好觅网绑定手机号码，验证码#code#，切勿将验证码泄露于他人，客服电话4009929339";  
+    int roundNum =1234;
+    String text = "【好觅网】您正在修改您的好觅网绑定手机号码，验证码"+roundNum+"，切勿将验证码泄露于他人，客服电话4009929339";  
     //发短信调用示例  
     System.out.println(YunPianSmsService.sendSms(apikey, text, mobile));  
   
