@@ -7,6 +7,6 @@ import com.hpf.model.RegionModel;
 
 public interface RegionDAO {
 	
-	public List getRegionInfo(RegionModel regionModel);
+	public void getRegionInfo(RegionModel regionModel, String currentpath);
 
 }

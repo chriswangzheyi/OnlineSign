@@ -36,6 +36,8 @@ public class StepsController {
 	//初始页面
     @RequestMapping(value="/")  
     public String home(ModelMap model,HttpServletRequest request) { 
+    	
+    	//生成微信支付码
     	WechatPay.Wchatpayment();    	
     	return "steps";  
     }  
@@ -97,9 +99,9 @@ public class StepsController {
     
     //更新地区信息
     @RequestMapping(value="/updateregion") 
-    public void updateRegion(){
-    	getregioninfo.getRegionInformation();
-    	
+    public void updateRegion(HttpServletRequest request){
+    	String path = request.getSession().getServletContext().getRealPath("/"+"resources/data");
+    	getregioninfo.getRegionInformation(path);   	
     }
     
     

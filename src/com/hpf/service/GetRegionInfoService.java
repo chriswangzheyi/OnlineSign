@@ -19,8 +19,8 @@ public class GetRegionInfoService {
 	private RegionModel regionModel;
 	
 	
-	public List getRegionInformation(){
-		regionDAO.getRegionInfo(regionModel);
+	public List getRegionInformation(String currentpath){
+		regionDAO.getRegionInfo(regionModel,currentpath);
 		return null;
 		
 	}
