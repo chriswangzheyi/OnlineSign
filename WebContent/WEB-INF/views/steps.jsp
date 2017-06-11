@@ -201,7 +201,7 @@
         <div class="stepForm_item">
             <label>店长手机：</label>
             <div class="form_box">
-                <input type="text" class="callInput" name="manager_phone" /><a class="callTest">验证码</a>
+                <input type="text" class="callInput" name="manager_phone" id="manager_phone"/><a class="callTest" href="javascript:void(0);" onclick="sendsmsformanager()">验证码</a>
                 <p class="explain">用于接收流水及结算数据报告</p>
             </div>
         </div>
@@ -218,7 +218,7 @@
         <div class="stepForm_item">
             <label>老板手机：</label>
             <div class="form_box">
-                <input type="text" class="callInput"/><a class="callTest" name="boss_phone">验证码</a>
+                <input type="text" class="callInput" name="boss_phone" id="boss_phone"/><a class="callTest" href="javascript:void(0);" onclick="sendsmsforboss()">验证码</a>
                 <p class="explain">餐厅扫码注册推荐关系的所属</p>
             </div>
         </div>
@@ -368,6 +368,32 @@
 
 
 <script>
+
+//给店长发短信
+function sendsmsformanager(){
+	
+	var managerphone = document.getElementById('manager_phone').value;	
+ 		 $.ajax({
+	        type: "GET",
+	        url: "sendsmsformanager?managerphone="+managerphone,
+	        success: function() {
+	        }	       	        
+		}) 
+}
+
+//给老板发短信
+function sendsmsforboss(){
+	
+	var bossphone = document.getElementById('boss_phone').value;	
+ 		 $.ajax({
+	        type: "GET",
+	        url: "sendsmsforboss?bossphone="+bossphone,
+	        success: function() {
+	        }	       	        
+		}) 
+}
+
+
 $(function () {
 //TODO 第二步里的城市四级联动：
     //ajax加载省市
@@ -605,9 +631,7 @@ $(function () {
     jQuery(function(){
 	jQuery('#payqrcode').qrcode("http://baidu.com");
 	})
-
-
-
+    
 });
 </script>
 </body>

@@ -32,23 +32,29 @@ private static String URI_SEND_SMS = "http://yunpian.com/v1/sms/send.json";
 //编码格式。发送编码格式统一用UTF-8  
 private static String ENCODING = "UTF-8";  
   
-public static void main(String[] args) throws IOException, URISyntaxException {  
   
-    //修改为您的apikey.apikey可在官网（http://www.yuanpian.com)登录后用户中心首页看到  
+public static void YunpianSendSms(String phone, String content, int verificationCode){
+	
+	//修改为您的apikey.apikey可在官网（http://www.yuanpian.com)登录后用户中心首页看到  
     String apikey = "645edd40f90058470ed36e3f9df6b527";  
   
     //修改为您要发送的手机号  
-    String mobile = "13399815088";  
+    String mobile = phone;  
   
     /**************** 使用智能匹配模版接口发短信(推荐) *****************/  
-    //设置您要发送的内容(内容必须和某个模板匹配。以下例子匹配的是系统提供的1号模板）  
-    int roundNum =1234;
-    String text = "【好觅网】您正在修改您的好觅网绑定手机号码，验证码"+roundNum+"，切勿将验证码泄露于他人，客服电话4009929339";  
-    //发短信调用示例  
-    System.out.println(YunPianSmsService.sendSms(apikey, text, mobile));  
-  
-}  
-  
+    //设置您要发送的内容(内容必须和某个模板匹配。）  
+
+    
+    String text = content;  
+	
+	try {
+		YunPianSmsService.sendSms(apikey, text, mobile);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
 /** 
 * 智能匹配模版接口发短信 
 * 

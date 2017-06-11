@@ -1,11 +1,8 @@
 package com.hpf.controller;
 
-
-
-
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hpf.model.PhoneValidationModel;
 import com.hpf.service.GetRegionInfoService;
-import com.hpf.service.PayNotifyService;
 import com.hpf.service.WechatPay;
-
+import com.hpf.util.UUIDGenerator;
 
 
 
@@ -31,7 +28,7 @@ public class StepsController {
 	
 	@Autowired
 	private WechatPay WechatPay;
-
+	
     
 	//初始页面
     @RequestMapping(value="/")  
@@ -52,8 +49,7 @@ public class StepsController {
 
     	
     	/*上传文件 */   	
-    	//多个文件
-    	
+    	//多个文件	
     	System.out.println("viewfiles.length="+viewfiles.length);;
         if(viewfiles!=null && viewfiles.length>0){  
             for(int i = 0;i<viewfiles.length;i++){  
@@ -62,7 +58,10 @@ public class StepsController {
                 try {
                     //获取存取路径
                     String path = request.getSession().getServletContext().getRealPath("/") + "upload/";
-                    String filename=file.getOriginalFilename();                      
+                    String filename=file.getOriginalFilename();         
+                    String prefix=filename.substring(filename.lastIndexOf(".")+1);
+                    filename=UUIDGenerator.UUIDGenerator()+"."+prefix;
+                    
                     File FinalFile = new File(path, filename);
                     if(!FinalFile.exists()){  
                     	FinalFile.mkdirs();  
@@ -104,7 +103,7 @@ public class StepsController {
     	getregioninfo.getRegionInformation(path);   	
     }
     
-    
+  
     
     //提交页面
 /*    @RequestMapping(value="/submit")  
