@@ -43,9 +43,9 @@
         <div class="dcm_Protocol">
             <p><h4>《点餐猫商家协议》</h4></p>
             <p><br/></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aliquid blanditiis dolores eos excepturi facilis inventore ipsa libero minus molestias natus nisi obcaecati porro, saepe sequi tempora ullam voluptates?</p>
-            <p>点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议</p>
-            <p><h4>点餐猫商家协议</h4></p>
+            <p>本协议是您（以下称“甲方”）与重庆浩品峰电子商务有限公司（以下合称“乙方”）就甲方使用点餐猫平台服务相关事项所订立的有效合约。甲方通过网络页面点击确认或以其他乙方认可的方式接受本协议，即表示甲方与乙方就本协议达成一致并同意接受本协议的全部约定内容。如您不同意接受本协议的任意内容，或者无法准确理解相关条款含义的，请不要进行后续操作。</p>
+            <p></p>
+            <p><h4>目录</h4></p>
             <p><br/></p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aliquid blanditiis dolores eos excepturi facilis inventore ipsa libero minus molestias natus nisi obcaecati porro, saepe sequi tempora ullam voluptates?</p>
             <p>点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议</p>
@@ -55,14 +55,11 @@
             <p>点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议</p>
 
         </div>
-        ${qrcodeurl}
         <div class="stepForm_item">
             <input class="agreeBtn" type="checkbox" checked="checked"/> &nbsp;&nbsp;我同意并遵守上述的《点餐猫商家协议》
         </div>
         <a class="step_next istrue">下一步</a>
     </div><!--end 第一步-->
-
-
 
 
 <!--第二步-->
@@ -76,8 +73,8 @@
             </div>
         </div>
         
-        <a href="updateregion" target="_blank">更新地区</a>
-        <a class="updateregion" href="updateregion" target="_blank">更新地区</a>
+        <a href="javascript:void(0);" onclick="updateregion()">更新地区</a>
+
         <!--所在地区-->
         <div class="stepForm_item">
             <label>所在地区：</label>     
@@ -398,6 +395,18 @@ function sendsmsforboss(){
 	        }	       	        
 		}) 
 }
+
+//更新地区
+function updateRegion(){
+		alert("1111111111111111")
+ 		 $.ajax({
+	        type: "POST",
+	        url: "updateregion",
+	        success: function() {
+	        }	       	        
+		}) 
+}
+
 
 
 $(function () {

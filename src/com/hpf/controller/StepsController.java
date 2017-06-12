@@ -34,8 +34,8 @@ public class StepsController {
     @RequestMapping(value="/")  
     public String home(ModelMap model,HttpServletRequest request) { 
 
-    	//生成微信支付码
-    	String codeurl=WechatPay.Wchatpayment(); 
+    	//生成微信支付码(异步执行)
+    	String codeurl=WechatPay.Wchatpayment();  
     	request.setAttribute("qrcodeurl",codeurl);
     	return "steps";  
     }  
@@ -51,7 +51,6 @@ public class StepsController {
     	
     	/*上传文件 */   	
     	//多个文件	
-    	System.out.println("viewfiles.length="+viewfiles.length);;
         if(viewfiles!=null && viewfiles.length>0){  
             for(int i = 0;i<viewfiles.length;i++){  
                 MultipartFile file = viewfiles[i];  

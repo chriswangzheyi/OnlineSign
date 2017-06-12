@@ -25,10 +25,8 @@ public class DonwloadController
         String path = request.getSession().getServletContext().getRealPath("/");
         String filename= "test.txt";
         path = path+"/download/" ;  
-        System.out.println("path="+path);
                 
         File file=new File(path+filename); 
-        System.out.println("path+filename="+path+filename);
         HttpHeaders headers = new HttpHeaders();    
         String fileName=new String("test.txt".getBytes("UTF-8"),"iso-8859-1");  
         headers.setContentDispositionFormData("attachment", fileName);   
@@ -44,10 +42,9 @@ public class DonwloadController
         String path = request.getSession().getServletContext().getRealPath("/");
         String filename= "attorney.txt";
         path = path+"/download/" ;  
-        System.out.println("path="+path);
+
                 
         File file=new File(path+filename); 
-        System.out.println("path+filename="+path+filename);
         HttpHeaders headers = new HttpHeaders();    
         String fileName=new String("attorney.txt".getBytes("UTF-8"),"iso-8859-1");  
         headers.setContentDispositionFormData("attachment", fileName);   

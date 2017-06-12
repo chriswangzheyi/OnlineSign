@@ -25,9 +25,6 @@ public class RegionDAOImp implements RegionDAO {
 	@Override
 	public void getRegionInfo(RegionModel regionModel, String currentpath) {
 		String sql ="select id, name, pid,regLevel from ec_sys_region";
-		System.out.println("----------------------------------------------------");
-		System.out.println("111111111111111111currentpath="+currentpath);
-
     
 	JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 	try {

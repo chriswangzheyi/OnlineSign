@@ -1,30 +1,22 @@
 package com.hpf.controller;
 
-
-
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.RequestMapping;  
-
-
-
 
 
 @Controller  
 public class PayNotifyController {
 	
 
-
-   
-   
-    
+	@Scheduled(fixedRate=2000) 
     @RequestMapping(value="/paynotify")
     public String paynotifycallback(HttpServletRequest request) {
     	System.out.println("½øÈëpaynotifycallback");
@@ -49,10 +41,8 @@ public class PayNotifyController {
 			e.printStackTrace();
 		}
     	
-
-    	
-    	
 				return "paynotify"; 
     }
-       
+      
+
 }
