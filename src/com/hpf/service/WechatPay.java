@@ -4,6 +4,7 @@ package com.hpf.service;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hpf.model.PayModel;
@@ -11,15 +12,17 @@ import com.hpf.util.Generator;
 import com.hpf.util.HttpsRequest;
 import com.hpf.util.WeChatSignature;
 import com.hpf.util.PayNotifyXMLDecoder;
+import com.hpf.util.QRCodeXMLDecoder;
 import com.hpf.util.XStreamUtil;
 
 
 @Component
 public class WechatPay {
 	
+	@Autowired
+	PayModel payModel;
 	
-	
-	public void Wchatpayment(){
+	public String Wchatpayment(){
 		
 		//参数
 		String service="pay.weixin.native";
@@ -68,14 +71,20 @@ public class WechatPay {
 		
 		//发送https请求生成二维码
 		try {
-			System.out.println("开始生成二维码");
+/*			System.out.println("开始生成二维码");*/
 			String responsexml = HttpsRequest.HttpsRequest("https://pay.swiftpass.cn/pay/gateway", "POST", requestxml);
 			System.out.println("responsexml="+responsexml);
-			PayNotifyXMLDecoder.getXMLInfo(responsexml);
+			
+			//解码
+			payModel.setCode_url(QRCodeXMLDecoder.getXMLInfo(responsexml, "code_url"));
+			return QRCodeXMLDecoder.getXMLInfo(responsexml, "code_url");
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 		
 	}	
 }

@@ -2,10 +2,8 @@ package com.hpf.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;  
 import org.springframework.ui.ModelMap;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hpf.model.PhoneValidationModel;
+import com.hpf.model.PayModel;
 import com.hpf.service.GetRegionInfoService;
 import com.hpf.service.WechatPay;
 import com.hpf.util.UUIDGenerator;
@@ -29,13 +27,16 @@ public class StepsController {
 	@Autowired
 	private WechatPay WechatPay;
 	
+	@Autowired
+	PayModel PayModel;
     
 	//初始页面
     @RequestMapping(value="/")  
     public String home(ModelMap model,HttpServletRequest request) { 
-    	
+
     	//生成微信支付码
-    	WechatPay.Wchatpayment();    	
+    	String codeurl=WechatPay.Wchatpayment(); 
+    	request.setAttribute("qrcodeurl",codeurl);
     	return "steps";  
     }  
 

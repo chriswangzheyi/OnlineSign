@@ -55,7 +55,7 @@
             <p>点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议</p>
 
         </div>
-
+        ${qrcodeurl}
         <div class="stepForm_item">
             <input class="agreeBtn" type="checkbox" checked="checked"/> &nbsp;&nbsp;我同意并遵守上述的《点餐猫商家协议》
         </div>
@@ -361,10 +361,16 @@
 
 
     </div><!--end第四步-->
+    
+    
+  	<!--   传值用 -->
+    <input type="hidden" id="qrcodeurl" name="qrcodeurl" value="${qrcodeurl}" />
 
     </form>
 
 </div>
+
+
 
 
 <script>
@@ -629,7 +635,8 @@ $(function () {
     
     //生成二维码
     jQuery(function(){
-	jQuery('#payqrcode').qrcode("http://baidu.com");
+    	var url= document.getElementById('qrcodeurl').value
+	jQuery('#payqrcode').qrcode(url);
 	})
     
 });

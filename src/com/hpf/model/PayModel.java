@@ -1,5 +1,8 @@
 package com.hpf.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PayModel {
 
 	private String appid;//¹«ÖÚºÅid
@@ -16,6 +19,7 @@ public class PayModel {
 	private String service;
 	private String mch_create_ip;
 	private String notify_url;
+	private String code_url;
 	
 	
 	//getter and setter
@@ -102,6 +106,12 @@ public class PayModel {
 	}
 	public void setNotify_url(String notify_url) {
 		this.notify_url = notify_url;
+	}
+	public String getCode_url() {
+		return code_url;
+	}
+	public void setCode_url(String code_url) {
+		this.code_url = code_url;
 	}
 	
 	

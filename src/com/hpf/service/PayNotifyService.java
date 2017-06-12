@@ -11,7 +11,7 @@ public class PayNotifyService {
 	
 	public boolean PayNotifyResponseXMLDecoder(String paynotifyxml){
 		
-		QRCodeXMLDecoder.getXMLInfo(paynotifyxml);
+		//QRCodeXMLDecoder.getXMLInfo(paynotifyxml);
 		
 		return true;
 		
