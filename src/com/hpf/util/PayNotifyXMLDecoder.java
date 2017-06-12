@@ -14,7 +14,7 @@ public class PayNotifyXMLDecoder {
 	
 	
 	
-	public static void getXMLInfo(String xml){
+	public static String getXMLInfo(String xml, String paraExpected){
 
 		String pay_result;
 
@@ -29,8 +29,9 @@ public class PayNotifyXMLDecoder {
 			//获取节点名称
 			for(int i=0;i<elementList.size();i++){
 				
-				if(elementList.get(i).getName().equals("pay_result")){
+				if(elementList.get(i).getName().equals("pay_result") && paraExpected.equals("pay_result")){
 					pay_result=elementList.get(i).getTextTrim();
+					return pay_result;
 				}			
 				
 			}
@@ -39,6 +40,8 @@ public class PayNotifyXMLDecoder {
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
+		
+		return null;
 	
 		
 	}

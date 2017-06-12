@@ -34,12 +34,14 @@ public class StepsController {
     @RequestMapping(value="/")  
     public String home(ModelMap model,HttpServletRequest request) { 
 
-    	//生成微信支付码(异步执行)
-    	String codeurl=WechatPay.Wchatpayment();  
+    	//生成微信支付码
+    	String codeurl=WechatPay.Wchatpayment(); 
     	request.setAttribute("qrcodeurl",codeurl);
+    	
     	return "steps";  
     }  
-
+    
+    
    
     
     @RequestMapping(value="/submit")

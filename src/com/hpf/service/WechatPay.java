@@ -23,7 +23,6 @@ public class WechatPay {
 	@Autowired
 	PayModel payModel;
 	
-	@Async
 	public String Wchatpayment(){
 		
 		//²ÎÊý

@@ -6,20 +6,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;  
-import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hpf.util.PayNotifyXMLDecoder;  
 
 
 @Controller  
 public class PayNotifyController {
 	
 
-	@Scheduled(fixedRate=2000) 
+
     @RequestMapping(value="/paynotify")
     public String paynotifycallback(HttpServletRequest request) {
-    	System.out.println("½øÈëpaynotifycallback");
+
     	
     	try {
 			InputStream inputStream = request.getInputStream();
@@ -32,10 +32,15 @@ public class PayNotifyController {
 			}
 			
 			in.close();
-			inputStream.close();
-						
+			
+	    	if(sb.toString() !=null && !sb.toString().equals("")){
+			inputStream.close();			
+			
 	    	String paynotifyrespxml = sb.toString();
-	    	System.out.println("respxml"+paynotifyrespxml);
+
+
+	    	String payresult= PayNotifyXMLDecoder.getXMLInfo(paynotifyrespxml, "pay_result");
+	    	}
 			
 		} catch (IOException e) {
 			e.printStackTrace();

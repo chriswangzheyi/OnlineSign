@@ -13,14 +13,6 @@ public class QRCodeXMLDecoder {
 	
 	public static String getXMLInfo(String xml, String paraExpected){
 
-		String version;
-		String charset;
-		String sign_type;
-		String status;
-		String result_code;
-		String mch_id;
-		String nonce_str;
-		String sign;
 		String code_url;
 				
 		try {
