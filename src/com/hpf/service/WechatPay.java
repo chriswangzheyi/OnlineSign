@@ -32,7 +32,7 @@ public class WechatPay {
 		String body="测试"; //商品描述
 		int total_fee=1; //总金额,单位为分
 		String mch_create_ip="218.70.106.206";
-		String notify_url="http://1q73x43283.51mypc.cn:39429/paynotify";
+		String notify_url="http://1q73x43283.51mypc.cn:28494/paynotify";
 		String key="9d101c97133837e13dde2d32a5054abb";
 		String nonce_str=Generator.getRandomNonceStr(32);
 

@@ -414,6 +414,8 @@
     
   	<!--   传值用 -->
     <input type="hidden" id="qrcodeurl" name="qrcodeurl" value="${qrcodeurl}" />
+    <input type="hidden" id="payresult" name="payresult" value="${payresult}" />
+    
 
     </form>
 

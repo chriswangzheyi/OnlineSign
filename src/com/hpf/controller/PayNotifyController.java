@@ -40,6 +40,8 @@ public class PayNotifyController {
 
 
 	    	String payresult= PayNotifyXMLDecoder.getXMLInfo(paynotifyrespxml, "pay_result");
+	    	request.setAttribute("payresult",payresult);
+
 	    	}
 			
 		} catch (IOException e) {

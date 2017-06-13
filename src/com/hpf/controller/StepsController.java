@@ -50,12 +50,7 @@ public class StepsController {
     	//¶ÁÈ¡²ÍÌüÀàĞÍ   	
     	List<?> typelist =stepsdao.GetRestaurantType(TypeModel);
     	request.setAttribute("typelist",typelist);
-    	
-    	 for(int i = 0;i<typelist.size();i++){
-    		   System.out.print(typelist.get(i)+"/t");
-    		  }
-    	
-    	
+    	    	  	
     	return "steps";  
     }  
     
