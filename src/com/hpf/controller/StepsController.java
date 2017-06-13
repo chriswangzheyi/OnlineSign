@@ -2,6 +2,7 @@ package com.hpf.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hpf.dao.StespsDAO;
 import com.hpf.model.PayModel;
+import com.hpf.model.TypeModel;
 import com.hpf.service.GetRegionInfoService;
 import com.hpf.service.WechatPay;
 import com.hpf.util.UUIDGenerator;
@@ -22,13 +25,19 @@ import com.hpf.util.UUIDGenerator;
 public class StepsController {
 	
 	@Autowired
-	private GetRegionInfoService getregioninfo;
+	private GetRegionInfoService getRegionInfoService;
 	
 	@Autowired
 	private WechatPay WechatPay;
 	
 	@Autowired
 	PayModel PayModel;
+	
+	@Autowired
+	StespsDAO stepsdao;
+	
+	@Autowired
+	TypeModel TypeModel;
     
 	//初始页面
     @RequestMapping(value="/")  
@@ -37,6 +46,15 @@ public class StepsController {
     	//生成微信支付码
     	String codeurl=WechatPay.Wchatpayment(); 
     	request.setAttribute("qrcodeurl",codeurl);
+    	
+    	//读取餐厅类型   	
+    	List<?> typelist =stepsdao.GetRestaurantType(TypeModel);
+    	request.setAttribute("typelist",typelist);
+    	
+    	 for(int i = 0;i<typelist.size();i++){
+    		   System.out.print(typelist.get(i)+"/t");
+    		  }
+    	
     	
     	return "steps";  
     }  
@@ -102,7 +120,7 @@ public class StepsController {
     @RequestMapping(value="/updateregion") 
     public void updateRegion(HttpServletRequest request){
     	String path = request.getSession().getServletContext().getRealPath("/"+"resources/data");
-    	getregioninfo.getRegionInformation(path);   	
+    	getRegionInfoService.getRegionInformation(path);   	
     }
     
   

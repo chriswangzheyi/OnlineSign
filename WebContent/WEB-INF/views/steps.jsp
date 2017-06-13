@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
     pageEncoding="UTF-8"%>  
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
 <html>
 <head lang="en">
@@ -148,9 +149,13 @@
             <label>餐厅类别：</label>
             <div class="form_box">
                 <select class="shopClass" name="restaurant_type">
-                    <option value="-1">火锅</option>
-                    <option>中餐</option>
-                    <option>海鲜</option>
+                   <!--  <option value="-1">火锅</option> -->
+                    <c:forEach var="value" items="${typelist}">  
+                                <option value="${value.name}">  
+                                ${value.name}  
+                                </option>  
+                                </c:forEach>  
+                   
                 </select>
             </div>
         </div>
@@ -445,7 +450,6 @@ function sendsmsforboss(){
 
 //更新地区
 function updateRegion(){
-		alert("1111111111111111")
  		 $.ajax({
 	        type: "POST",
 	        url: "updateregion",
