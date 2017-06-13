@@ -367,5 +367,20 @@ $(function () {
         }
     });
 
+    //产品选择的交互
+    $('.checkboxitem').on('change','input[type="checkbox"]', function () {
+        if(this.checked){
+            $(this).prev('i.checkbox_icon').addClass('act');
+        }else{
+            $(this).prev('i.checkbox_icon').removeClass('act');
+        }
+    });
+
+    //合作方式的交互
+    $('.checkboxitem').on('change','input[type="radio"]', function () {
+        $('.checkboxitem i.radio_icon').removeClass('act');
+        $(this).prev('i.radio_icon').addClass('act');
+    });
+
 });
 

@@ -670,6 +670,85 @@ input.DCMcontract::-webkit-file-upload-button {
     display: none;
 }
 
+/*第二步的产品选择和合作方式*/
+.checkBox{
+    width: 100%;
+    overflow: hidden;
+}
+.checkboxitem{
+    float: left;
+    padding-left: 21px;
+    line-height: 35px;
+    position: relative;
+}
+.checkboxitem:first-of-type{
+    margin-right: 20px;
+}
+.checkboxitem input{
+    display: block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;
+    background-color: #fff;
+    line-height: 35px;
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -8px;
+    opacity: 0;
+}
+.checkboxitem span{
+    line-height: 35px;
+    margin-left: 5px;
+}
+.checkbox_icon,.radio_icon{
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -8px;
+}
+.radio_icon{
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+}
+.checkbox_icon.act{
+    background-image: url("../img/checkbox_act.png");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    border: 0;
+}
+.radio_icon.act{
+    background-image: url("../img/radio_act.png");
+    background-size: 6px 6px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.click_a{
+    float: left;
+    font-size: 16px;
+    color: #38a1d6;
+    cursor: pointer;
+    margin-left: 30px;
+}
+/*所在地区提示语*/
+.ip_prompt{
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+    line-height: 14px;
+    font-size: 12px;
+    color: #999;
+}
+
 
 
 

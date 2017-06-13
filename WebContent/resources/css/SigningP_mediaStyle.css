@@ -61,6 +61,10 @@
         width: 250px;
     }
 
+    .ip_prompt{
+        bottom: -22px;
+    }
+
 }/* >=480 */
 
 

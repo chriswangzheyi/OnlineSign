@@ -65,7 +65,53 @@
 <!--第二步-->
     <div class="stepBox_02" style="display: none;">
         <p class="SigningP_a"><a href="explain" target="_blank">点餐猫商家签约流程详细说明&gt;&gt;</a></p>
-        <!--餐厅名称-->
+
+    <!--产品选择-->
+    <div class="stepForm_item">
+        <label>产品选择：</label>
+        <div class="form_box">
+            <div class="checkBox">
+                <div class="checkboxitem">
+                    <i class="checkbox_icon act"></i>
+                    <input type="checkbox" checked="checked" />
+                    <span>轻量付收款码</span>
+                </div>
+                <div class="checkboxitem">
+                    <i class="checkbox_icon"></i>
+                    <input type="checkbox"/>
+                    <span>点餐猫智能收银系统</span>
+                </div>
+                <a class="click_a">产品详情说明&gt;&gt;</a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--合作方式-->
+    <div class="stepForm_item">
+        <label>合作方式：</label>
+        <div class="form_box">
+            <div class="checkBox">
+                <div class="checkboxitem">
+                    <i class="radio_icon act"></i>
+                    <input name="cooperate" type="radio" checked="checked" />
+                    <span>方式A</span>
+                </div>
+                <div class="checkboxitem">
+                    <i class="radio_icon"></i>
+                    <input name="cooperate" type="radio"/>
+                    <span>方式B</span>
+                </div>
+
+                <a class="click_a">合作方式详情说明&gt;&gt;</a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--餐厅名称-->
         <div class="stepForm_item">
             <label>餐厅名称：</label>
             <div class="form_box">
@@ -94,6 +140,7 @@
                 <select class="shopIp_JD" name="restaurant_street">
                     <option value="-1">街道</option>
                 </select>
+                <span class="ip_prompt">如果餐厅所在地区未在列表内，请致电:400-992-9339</span>
             </div>
         </div>
         <!--餐厅类别-->
