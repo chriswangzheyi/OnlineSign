@@ -382,5 +382,137 @@ $(function () {
         $(this).prev('i.radio_icon').addClass('act');
     });
 
+    //TODO 点击下一步 当前步骤输入框等不能为空的验证
+    //封装input、sleect的验证
+    function inpSleTestFun(el){
+        //input的验证
+        var inputs = $(el).find('input');
+        var inputsLen = inputs.length;
+        for(var i=0;i<inputsLen;i++){
+            var inp_value   = inputs[i].value;//input的值
+            var inp_type    = $(inputs[i]).attr('type');//input的type
+            var inp_labelEl  = $(inputs[i]).parents('.stepForm_item').find('label');
+            var inp_labels  = $(inputs[i]).parents('.stepForm_item').find('label').text();//input的指定Label
+            var inp_label   = inp_labels.substring(0,inp_labels.indexOf('：'));//input的指定Label的文字
+            var inp_parent  = $(inputs[i]).parents('.stepForm_item');
+
+            //封装提示和滚动方法
+            function alertScrollFun(){
+                alert('"'+ inp_label +'"不能为空！');
+                var _top =inp_parent.offset().top;
+                //滚动至相应位置
+                $('html,body').animate({
+                    scrollTop: inp_parent.offset().top - 60
+                }, 200);
+                //当前闪烁提示
+                setTimeout(function () {
+                    twinkleFun(inp_labelEl);
+                },200);
+            }
+
+            //如果是复选框，必选
+            if(inp_type == 'checkbox'){
+                var checkBoxBtn = inp_parent.find('[type="checkbox"]:checked').size();//选中的复选框个数
+                if(checkBoxBtn==0){
+                    alertScrollFun();
+                    return false;
+                }
+            }
+
+            //如果是文字输入框，必填
+            if(inp_type == 'text'){
+                if(inp_value ==""){
+                    alertScrollFun();
+                    return false;
+                }
+            }
+
+            //如果是文件加载，必填
+            if(inp_type == 'file'){
+                if(inp_value ==""){
+                    alertScrollFun();
+                    return false;
+                }
+            }
+        }
+
+
+        //下拉菜单的验证
+        var selects = $(el).find('select');
+        var selectsLen = selects.length;
+        for(var s=0;s<selectsLen;s++ ){
+            var sel_value   = $(selects[s]).val();//select的值
+            var sel_type    = $(selects[s]).attr('type');//select的type
+            var sel_labelEl  = $(selects[s]).parents('.stepForm_item').find('label');
+            var sel_labels  = $(selects[s]).parents('.stepForm_item').find('label').text();//select的指定Label
+            var sel_label   = sel_labels.substring(0,sel_labels.indexOf('：'));//select的指定Label的文字
+            var sel_parent  = $(selects[s]).parents('.stepForm_item');
+
+            //封装提示和滚动方法
+            function alertScrollFun(){
+                alert('"'+ sel_label +'"不能为空！');
+                var _top =sel_parent.offset().top;
+                //滚动至相应位置
+                $('html,body').animate({
+                    scrollTop: sel_parent.offset().top - 60
+                }, 200);
+                //当前闪烁提示
+                setTimeout(function () {
+                    twinkleFun(sel_labelEl);
+                },200);
+            }
+            if(sel_value =='-1'){
+                alertScrollFun();
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    //第二步验证：
+    $('.stepBox_02').on('click', '.step_next',function () {
+        if(!inpSleTestFun($('.stepBox_02'))){
+            return false;
+        }
+    });
+
+    //第三步验证：
+    $('.stepBox_03').on('click', '.step_next',function () {
+        if(!inpSleTestFun($('.stepBox_03'))){
+            return false;
+        }
+
+        /*
+         var timer = setInterval(function(){
+         console.log('每个三秒请求服务器开始……');
+
+         //$('.QRcode').hide();//隐藏二维码
+         //$('.isOK').show();//显示支付成功
+         //clearInterval(timer);//关闭定时器（不再请求服务器）
+
+         //将以上三行代码 放到ajax里 通过获取的值来控制定时器
+
+         },3000);
+         */
+
+
+
+
+    });
+
+
+    $('select').find('option[value="-1"]').css({'color':'#999'});
+    //下拉菜单 值为“-1”时 改变字体颜色
+    $('select').on('change', function () {
+        if($(this).val() == '-1'){
+            $(this).css({'color':'#999'});
+            $(this).find('option').css({'color':'#333'});
+        }else{
+            $(this).css({'color':'#333'});
+        }
+        $(this).find('option[value="-1"]').css({'color':'#999'});
+    });
+
 });
 

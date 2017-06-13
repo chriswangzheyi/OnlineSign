@@ -74,12 +74,12 @@
             <div class="checkBox">
                 <div class="checkboxitem">
                     <i class="checkbox_icon act"></i>
-                    <input type="checkbox" checked="checked" />
+                    <input type="checkbox" checked="checked" name="light_pay"/>
                     <span>轻量付收款码</span>
                 </div>
                 <div class="checkboxitem">
                     <i class="checkbox_icon"></i>
-                    <input type="checkbox"/>
+                    <input type="checkbox" name="casher_system"/>
                     <span>点餐猫智能收银系统</span>
                 </div>
                 <a class="click_a">产品详情说明&gt;&gt;</a>
@@ -96,17 +96,17 @@
             <div class="checkBox">
                 <div class="checkboxitem">
                     <i class="radio_icon act"></i>
-                    <input name="cooperate" type="radio" checked="checked" />
+                    <input name="cooperate" type="radio" checked="checked" name="typeA"/>
                     <span>方式A</span>
                 </div>
                 <div class="checkboxitem">
                     <i class="radio_icon"></i>
-                    <input name="cooperate" type="radio"/>
+                    <input name="cooperate" type="radio" name="typeB"/>
                     <span>方式B</span>
                 </div>
 
                 <a class="click_a">合作方式详情说明&gt;&gt;</a>
-
+                
             </div>
         </div>
     </div>
@@ -120,7 +120,7 @@
             </div>
         </div>
         
-        <a href="javascript:void(0);" onclick="updateregion()">更新地区</a>
+       <!--  <a href="javascript:void(0);" onclick="updateregion()">更新地区</a> -->
 
         <!--所在地区-->
         <div class="stepForm_item">
@@ -223,8 +223,7 @@
                     <div class="z_file">
                     	
                         <input type="file" id="file" class="shopimg" multiple="multiple" name="viewfiles" />
-                        <br><br><br>
-                        <input type="submit" value="提交111111">
+
                     </div>
                 </div>
 
@@ -257,7 +256,7 @@
         <div class="stepForm_item">
             <label>短信验证码：</label>
             <div class="form_box">
-                <input type="text" class=""/>
+                <input type="text" class="" name="manager_phone_code"/>
             </div>
         </div>
 
@@ -274,7 +273,7 @@
         <div class="stepForm_item">
             <label>短信验证码：</label>
             <div class="form_box">
-                <input type="text" class=""/>
+                <input type="text" class="" name="boss_phone_code"/>
             </div>
         </div>
 
@@ -305,7 +304,7 @@
                 <a class="DCMcontract_downFile" href="downloadcontract">下载合同</a>
                 <div class="DCMcontract_Box">
                     <span class="DCMcontract_text">未选择文件</span>
-                    <input class="DCMcontract" type="file" name="files_temp"/>
+                    <input class="DCMcontract" type="file" name="contractfile"/>
                     <span class="DCMcontract_name"></span>
                 </div>
                 <div class="DCMcontract_img"></div>
@@ -360,7 +359,7 @@
                 <a class="atto_downFile" href="downloadattorney">下载委托书</a>
                 <div class="atto_Box">
                     <span class="atto_text">未选择文件</span>
-                    <input class="atto" type="file" name="files_temp"/>
+                    <input class="atto" type="file" name="attorneyfile"/>
                     <span class="atto_name"></span>
                 </div>
                 <div class="atto_img"></div>
@@ -407,7 +406,7 @@
             <p>客服热线</p>
             <p>400-992-9339</p>
         </div>
-
+                        <input type="submit" value="测试用提交按钮">
 
     </div><!--end第四步-->
     

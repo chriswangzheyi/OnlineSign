@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hpf.dao.StespsDAO;
 import com.hpf.model.PayModel;
 import com.hpf.model.TypeModel;
+import com.hpf.model.UserModel;
 import com.hpf.service.GetRegionInfoService;
 import com.hpf.service.WechatPay;
 import com.hpf.util.UUIDGenerator;
@@ -38,6 +39,9 @@ public class StepsController {
 	
 	@Autowired
 	TypeModel TypeModel;
+	
+	@Autowired
+	UserModel UserModel;
     
 	//初始页面
     @RequestMapping(value="/")  
@@ -54,16 +58,54 @@ public class StepsController {
     	return "steps";  
     }  
     
-    
-   
-    
+     
     @RequestMapping(value="/submit")
     public String fileUpload(@RequestParam("viewfiles") MultipartFile[] viewfiles,
     	    @RequestParam(value = "licensefile", required = false) MultipartFile licensefile,
-    		HttpServletRequest request
+    	    @RequestParam(value = "contractfile", required = false) MultipartFile contractfile,
+    	    @RequestParam(value = "attorneyfile", required = false) MultipartFile attorneyfile,
+    		HttpServletRequest request,  		
+    		@RequestParam("restaurant_name") String restaurantName, 
+    		@RequestParam("restaurant_province") String restaurantProvince, 
+    		@RequestParam("restaurant_city") String restaurantCity,
+    		@RequestParam("restaurant_district") String restaurantDistrict,
+    		@RequestParam("restaurant_street") String restaurantStreet,
+    		@RequestParam("restaurant_type") String restaurantType,
+    		@RequestParam("restaurant_address") String restaurantAddress,
+    		@RequestParam("restaurant_tel") String restaurantTel,
+    		@RequestParam("restaurant_opentime") String restaurantOpentime,
+    		@RequestParam("restaurant_closetime") String restaurantClosetime,
+    		@RequestParam("restaurant_indroduction") String restaurantIndroduction,
+    		@RequestParam("manager_phone") String managerPhone,
+    		@RequestParam("manager_phone_code") String managerPhoneCode,    		
+    		@RequestParam("boss_phone") String bossPhone,
+    		@RequestParam("boss_phone_code") String bossPhoneCode,
+    		@RequestParam("bankaccount_name") String bankaccountName,
+    		@RequestParam("bankaccount_bank") String bankaccountBank,
+    		@RequestParam("bankaccount_account") String bankaccountAccount  
+    		 		
     		) { 
 
-    	
+        UserModel.setRestaurantName(restaurantName);
+        UserModel.setRestaurantProvince(restaurantProvince);
+        UserModel.setRestaurantCity(restaurantCity);
+        UserModel.setRestaurantDistrict(restaurantDistrict);
+        UserModel.setRestaurantType(restaurantType);
+        UserModel.setRestaurantStreet(restaurantStreet);
+        UserModel.setRestaurantAddress(restaurantAddress);
+        UserModel.setRestaurantTel(restaurantTel);
+        UserModel.setRestaurantOpentime(restaurantOpentime);
+        UserModel.setRestaurantClosetime(restaurantClosetime);
+        UserModel.setRestaurantIndroduction(restaurantIndroduction);
+        UserModel.setManagerPhone(managerPhone);
+        UserModel.setManagerPhoneCode(managerPhoneCode);
+        UserModel.setBossPhone(bossPhone);
+        UserModel.setBossPhoneCode(bossPhoneCode);
+        UserModel.setBankaccountName(bankaccountName);
+        UserModel.setBankaccountBank(bankaccountBank);
+        UserModel.setBankaccountAccount(bankaccountAccount);
+
+    	    	
     	/*上传文件 */   	
     	//多个文件	
         if(viewfiles!=null && viewfiles.length>0){  
@@ -83,6 +125,9 @@ public class StepsController {
                     }
                     // 转存文件  
                     file.transferTo(FinalFile); 
+                    
+                    System.out.println("多个文件路径="+path+filename);
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }  
@@ -90,19 +135,49 @@ public class StepsController {
             
             //单个文件     
             String path = request.getSession().getServletContext().getRealPath("/") + "upload/";  
+            
             String licenseName = licensefile.getOriginalFilename();
+            String prefix=licenseName.substring(licenseName.lastIndexOf(".")+1);
+            licenseName=UUIDGenerator.UUIDGenerator()+"."+prefix;
+            
+            String contractName= contractfile.getOriginalFilename();
+            prefix=contractName.substring(contractName.lastIndexOf(".")+1);
+            contractName=UUIDGenerator.UUIDGenerator()+"."+prefix;
+            
+            String attorneyName= attorneyfile.getOriginalFilename();
+            prefix=attorneyName.substring(attorneyName.lastIndexOf(".")+1);
+            attorneyName=UUIDGenerator.UUIDGenerator()+"."+prefix;
+            
+            
+       	 System.out.println("合同路径="+path+licenseName);
+       	System.out.println("执照路径="+path+licenseName);
+       	System.out.println("委托书路径="+path+attorneyName);
+            
             File licenseFinalFile = new File(path, licenseName);
+            File contractFinalFile = new File(path, contractName);
+            File attorneyFinalFile = new File(path, attorneyName);
+            
             if(!licenseFinalFile.exists()){  
                 licenseFinalFile.mkdirs();  
             }
             
+            if(!contractFinalFile.exists()){  
+            	contractFinalFile.mkdirs();  
+            }
+            
+            if(!attorneyFinalFile.exists()){  
+            	attorneyFinalFile.mkdirs();  
+            }
+            
             try { 	
             	 licensefile.transferTo(licenseFinalFile); 
+            	 contractfile.transferTo(contractFinalFile);
+            	 attorneyfile.transferTo(attorneyFinalFile);
+            	 
             	} catch (Exception e) {  
             	 e.printStackTrace();  
             	}  
-            
-            
+                    
             // 成功
             return "steps"; 
         }  
@@ -117,32 +192,5 @@ public class StepsController {
     	String path = request.getSession().getServletContext().getRealPath("/"+"resources/data");
     	getRegionInfoService.getRegionInformation(path);   	
     }
-    
-  
-    
-    //提交页面
-/*    @RequestMapping(value="/submit")  
-    public String login(@RequestParam("restaurant_province") String restaurantProvince, 
-    		@RequestParam("restaurant_city") String restaurantCity,
-    		@RequestParam("restaurant_district") String restaurantDistrict,
-    		@RequestParam("restaurant_street") String restaurantStreet,
-    		@RequestParam("restaurant_type") String restaurantType,
-    		@RequestParam("restaurant_address") String restaurantAddress,
-    		@RequestParam("restaurant_tel") String restaurantTel,
-    		@RequestParam("restaurant_opentime") String restaurantOpentime,
-    		@RequestParam("restaurant_closetime") String restaurantClosetime,
-    		@RequestParam("restaurant_indroduction") String restaurantIndroduction,
-    		@RequestParam("restaurant_addres") String restaurant_addres,
-    		@RequestParam("restaurant_view") String restaurantView,
-    		@RequestParam("manager_phone") String managerPhone,
-    		@RequestParam("boss_phone") String boss_phone,
-    		@RequestParam("bankaccount_name") String bankaccountName,
-    		@RequestParam("bankaccount_bank") String bankaccountBank,
-    		@RequestParam("bankaccount_account") String bankaccountAccount,    		
-    		ModelMap model,
-    		@ModelAttribute("UserModel") UserModel userModel) {  
-    	return "steps";
-    }  */
-    
-       
+             
 }

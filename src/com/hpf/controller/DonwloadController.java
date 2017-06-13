@@ -28,7 +28,7 @@ public class DonwloadController
                 
         File file=new File(path+filename); 
         HttpHeaders headers = new HttpHeaders();    
-        String fileName=new String("test.txt".getBytes("UTF-8"),"iso-8859-1");  
+        String fileName=new String("contract.txt".getBytes("UTF-8"),"iso-8859-1");  
         headers.setContentDispositionFormData("attachment", fileName);   
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);   
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),    
