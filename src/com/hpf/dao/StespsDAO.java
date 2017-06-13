@@ -1,9 +1,11 @@
 package com.hpf.dao;
 
+import java.util.List;
+
 import com.hpf.model.UserModel;
 
 public interface StespsDAO {
 	
-	public String submitForm(UserModel loginmodel);
+	public List GetRestaurantType(UserModel loginmodel);
 
 }
