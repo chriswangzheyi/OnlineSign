@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hpf.dao.StespsDAO;
 import com.hpf.model.PayModel;
+import com.hpf.model.PayNotifyModel;
 import com.hpf.model.TypeModel;
 import com.hpf.model.UserModel;
 import com.hpf.service.GetRegionInfoService;
@@ -42,6 +43,9 @@ public class StepsController {
 	
 	@Autowired
 	UserModel UserModel;
+	
+	@Autowired
+	PayNotifyModel PayNotifyModel;
     
 	//初始页面
     @RequestMapping(value="/")  
@@ -85,7 +89,19 @@ public class StepsController {
     		@RequestParam("bankaccount_account") String bankaccountAccount  
     		 		
     		) { 
-
+    	
+    	//轻量付和系统选择
+    	if("on".equals( request.getParameter("light_pay")) ){
+    		UserModel.setLightpay("1");
+    	}
+    	
+    	if("on".equals( request.getParameter("casher_system")) ){
+    		UserModel.setCasherSystem("1");
+    	}
+    	
+    	//合作方式选择
+    	UserModel.setCooperatetype(request.getParameter("cooperate"));
+    	
         UserModel.setRestaurantName(restaurantName);
         UserModel.setRestaurantProvince(restaurantProvince);
         UserModel.setRestaurantCity(restaurantCity);
@@ -109,6 +125,7 @@ public class StepsController {
     	/*上传文件 */   	
     	//多个文件	
         if(viewfiles!=null && viewfiles.length>0){  
+        	String viewfilenames = "";
             for(int i = 0;i<viewfiles.length;i++){  
                 MultipartFile file = viewfiles[i];  
 
@@ -125,16 +142,18 @@ public class StepsController {
                     }
                     // 转存文件  
                     file.transferTo(FinalFile); 
-                    
-                    System.out.println("多个文件路径="+path+filename);
+
+                    viewfilenames+=filename+",";
                     
                 } catch (IOException e) {
                     e.printStackTrace();
                 }  
             }
             
+            UserModel.setViewspath(viewfilenames);
             //单个文件     
             String path = request.getSession().getServletContext().getRealPath("/") + "upload/";  
+            UserModel.setBaseurl(path);
             
             String licenseName = licensefile.getOriginalFilename();
             String prefix=licenseName.substring(licenseName.lastIndexOf(".")+1);
@@ -149,9 +168,6 @@ public class StepsController {
             attorneyName=UUIDGenerator.UUIDGenerator()+"."+prefix;
             
             
-       	 System.out.println("合同路径="+path+licenseName);
-       	System.out.println("执照路径="+path+licenseName);
-       	System.out.println("委托书路径="+path+attorneyName);
             
             File licenseFinalFile = new File(path, licenseName);
             File contractFinalFile = new File(path, contractName);
@@ -174,11 +190,18 @@ public class StepsController {
             	 contractfile.transferTo(contractFinalFile);
             	 attorneyfile.transferTo(attorneyFinalFile);
             	 
+            	 UserModel.setLicensepath(licenseName);
+            	 UserModel.setContractpath(contractName);
+            	 UserModel.setAttorneypath(attorneyName);
+            	 
+                 stepsdao.CompleteApplication(UserModel,PayNotifyModel);
             	} catch (Exception e) {  
             	 e.printStackTrace();  
             	}  
                     
             // 成功
+            
+
             return "steps"; 
         }  
         // 失败

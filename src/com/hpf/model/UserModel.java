@@ -1,7 +1,6 @@
 package com.hpf.model;
 
 
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,10 +29,13 @@ public class UserModel {
 	private String casherSystem;
 	private String typeA;
 	private String typeB;
+	private String baseurl;
 	private String contractpath;
 	private String attorneypath;
-	private String license;
-	 
+	private String licensepath;
+	private String viewspath; 
+	private String cooperatetype;
+
 	
 	//getter and setter
 	public String getRestaurantProvince() {
@@ -180,10 +182,30 @@ public class UserModel {
 	public void setAttorneypath(String attorneypath) {
 		this.attorneypath = attorneypath;
 	}
-	public String getLicense() {
-		return license;
+	public String getLicensepath() {
+		return licensepath;
 	}
-	public void setLicense(String license) {
-		this.license = license;
+	public void setLicensepath(String licensepath) {
+		this.licensepath = licensepath;
 	}
+	public String getViewspath() {
+		return viewspath;
+	}
+	public void setViewspath(String viewspath) {
+		this.viewspath = viewspath;
+	}
+	public String getCooperatetype() {
+		return cooperatetype;
+	}
+	public void setCooperatetype(String cooperatetype) {
+		this.cooperatetype = cooperatetype;
+	}
+	public String getBaseurl() {
+		return baseurl;
+	}
+	public void setBaseurl(String baseurl) {
+		this.baseurl = baseurl;
+	}
+	
+	
 }

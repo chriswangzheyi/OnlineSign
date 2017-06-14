@@ -96,12 +96,12 @@
             <div class="checkBox">
                 <div class="checkboxitem">
                     <i class="radio_icon act"></i>
-                    <input name="cooperate" type="radio" checked="checked" name="typeA"/>
+                    <input name="cooperate" type="radio" checked="checked" value="A"/>
                     <span>方式A</span>
                 </div>
                 <div class="checkboxitem">
                     <i class="radio_icon"></i>
-                    <input name="cooperate" type="radio" name="typeB"/>
+                    <input name="cooperate" type="radio" value="B"/>
                     <span>方式B</span>
                 </div>
 
@@ -165,7 +165,7 @@
         <!--餐厅地址-->
         <div class="stepForm_item">
             <label>餐厅地址：</label>
-            <div class="form_box"  class="shop_mapBox">
+            <div class="form_box shop_mapBox">
                 <input class="shop_map" type="text" name="restaurant_address"/>
                 <div class="mapBtn">
                     <img src="resources/img/icon_map_32px.png"/>
@@ -287,7 +287,7 @@
                 <p class="explain">格式要求：原件照片、扫描件或者加盖公章的复印件，支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
                 <div class="busLic_Box">
                     <span class="busLic_text">未选择文件</span>
-                    <input class="busLic" type="file" name="licensefile" name="licensefile"/>
+                    <input class="busLic" type="file" name="licensefile"/>
                     <span class="busLic_name"></span>
                 </div>
                 <div class="busLic_img"></div>
@@ -314,6 +314,7 @@
         <div class="from_hr"></div>
 
         <a class="step_next istrue">下一步</a>
+                                <input type="submit" value="测试用提交按钮">
     </div><!--end第二步-->
 
 
@@ -457,6 +458,12 @@ function updateRegion(){
 	        success: function() {
 	        }	       	        
 		}) 
+}
+
+//Radio selector
+function radioselect(para){
+    var para = para.value;
+    alert("选中的值----"+str);
 }
 
 
