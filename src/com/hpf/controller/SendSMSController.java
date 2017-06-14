@@ -26,8 +26,10 @@ public class SendSMSController {
         	phoneValidationModel.setManagerPhone(managerphone);
         	//随机6位验证码
         	int verificationCode =(int) ((Math.random()*9+1)*100000);
-        	String content ="【好觅网】您正在修改您的好觅网绑定手机号码，验证码"+verificationCode+"，切勿将验证码泄露于他人，客服电话4009929339";     		
+        	String content ="喵~验证码"+verificationCode+",请绑定您的店长手机号码。";     		
         	YunPianSmsService.YunpianSendSms(managerphone,content,verificationCode);
+        	
+        	request.setAttribute("manager_phone_validation",verificationCode);
         }
     
         
@@ -39,8 +41,11 @@ public class SendSMSController {
         	phoneValidationModel.setManagerPhone(bossphone);
         	//随机6位验证码
         	int verificationCode =(int) ((Math.random()*9+1)*100000);
-        	String content ="【好觅网】您正在修改您的好觅网绑定手机号码，验证码"+verificationCode+"，切勿将验证码泄露于他人，客服电话4009929339";     		
+        	String content ="喵~验证码"+verificationCode+",请绑定您的老板手机号码。";  
         	YunPianSmsService.YunpianSendSms(bossphone,content,verificationCode);
+        	
+        	
+        	request.setAttribute("boss_phone_validation",verificationCode);
         }
     
   

@@ -415,8 +415,9 @@
   	<!--   传值用 -->
     <input type="hidden" id="qrcodeurl" name="qrcodeurl" value="${qrcodeurl}" />
     <input type="hidden" id="payresult" name="payresult" value="${payresult}" />
-    
-
+    <input type="hidden" id="boss_phone_validation" name="boss_phone_validation" value="${boss_phone_validation}" />
+    <input type="hidden" id="manager_phone_validation" name="manager_phone_validation" value="${manager_phone_validation}" />
+ 
     </form>
 
 </div>
