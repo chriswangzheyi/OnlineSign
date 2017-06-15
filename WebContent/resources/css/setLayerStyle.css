@@ -1,0 +1,71 @@
+/****弹层样式（layui）修改****/
+.layui-layer{border-radius: 4px;}
+.layui-layer-title {
+    padding: 0 80px 0 20px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 14px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #e94e4b;
+    border-radius: 4px 4px 0 0;
+}
+.layui-layer-content{text-align: center;}
+.layui-layer-dialog .layui-layer-content {
+    position: relative;
+    padding: 30px 20px;
+    line-height: 24px;
+    word-break: break-all;
+    overflow: hidden;
+    font-size: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.layui-layer-setwin {
+    position: absolute;
+    right: 18px;
+    top: 20px;
+    font-size: 0;
+    line-height: initial;
+}
+.layui-layer-setwin .layui-layer-close1 {
+    background-position: 0 -61px;
+    cursor: pointer;
+}
+.layui-layer-btn {
+    text-align: center;
+    padding: 0 20px 30px;
+    pointer-events: auto;
+    user-select: none;//文本不能被选择
+-webkit-user-select: none;
+}
+.layui-layer-btn .layui-layer-btn0 {
+    border-color: #e94e4b;
+    background-color: #e94e4b;
+    color: #fff;
+}
+.layui-layer-btn a {
+    display: inline-block;*display: inline;*zoom: 1;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 10px;
+    padding: 0 20px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    color: #929292;
+    border-radius: 4px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.layui-layer-dialog .layui-layer-content .layui-layer-ico {
+    position: static;
+    width: 30px;
+    height: 30px;
+    display: inline-block;*display: inline;*zoom: 1;
+    margin-left: 5px;
+}

@@ -91,17 +91,29 @@ public class StepsController {
     		) { 
     	
     	//轻量付和系统选择
+
     	if("on".equals( request.getParameter("light_pay")) ){
     		UserModel.setLightpay("1");
-    	}
+    	}else {
+        	UserModel.setLightpay("0");
+		}
     	
     	if("on".equals( request.getParameter("casher_system")) ){
     		UserModel.setCasherSystem("1");
-    	}
+    	}else {
+    		UserModel.setCasherSystem("0");
+		}
     	
     	//合作方式选择
     	UserModel.setCooperatetype(request.getParameter("cooperate"));
     	
+    	
+    	//截取地址内容
+    	restaurantProvince=restaurantProvince.substring(restaurantProvince.lastIndexOf(",")+1);
+    	restaurantCity=restaurantCity.substring(restaurantCity.lastIndexOf(",")+1);
+    	restaurantDistrict=restaurantDistrict.substring(restaurantDistrict.lastIndexOf(",")+1);
+    	restaurantStreet=restaurantStreet.substring(restaurantStreet.lastIndexOf(",")+1);
+    			       	
         UserModel.setRestaurantName(restaurantName);
         UserModel.setRestaurantProvince(restaurantProvince);
         UserModel.setRestaurantCity(restaurantCity);

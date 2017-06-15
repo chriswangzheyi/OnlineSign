@@ -112,7 +112,7 @@ body{background-color: #fff;}
     width: 80px;
     height: 35px;
     border-radius: 4px;
-    background-color: #ccc;
+    background-color: #d73938;
     color: #fff;
     font-size: 16px;
     text-align: center;
@@ -121,9 +121,6 @@ body{background-color: #fff;}
     margin-top: 20px;
     margin-bottom:20px;
     cursor: pointer;
-}
-.step_next.istrue{
-    background-color: #d73938;
 }
 .step_form div[class*="stepBox_"]{
     width: 100%;
@@ -581,7 +578,17 @@ input.DCMcontract::-webkit-file-upload-button {
     margin-top: 20px;
     margin-bottom: 10px;
 }
-.QRcode img{
+.isOK{
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: none;
+}
+.QRcode img,
+.isOK img{
     display: block;
     width: 100%;
     height: 100%;
@@ -669,7 +676,9 @@ input.DCMcontract::-webkit-file-upload-button {
     cursor: pointer;
     display: none;
 }
-
+select option[value="-1"]{
+    color: #999;
+}
 /*第二步的产品选择和合作方式*/
 .checkBox{
     width: 100%;
@@ -749,7 +758,42 @@ input.DCMcontract::-webkit-file-upload-button {
     color: #999;
 }
 
+/*更新地区*/
+.ip_update{
+    display: inline-block;
+    width: 32px;
+    height: 23px;
+    background-image: url("../img/update_ip.png");
+    background-repeat: no-repeat;
+    background-size: 32px 23px;
+    line-height: 35px;
+    margin-left: 10px;
+    margin-top: 5.5px;
+    cursor: pointer;
+}
 
+/*可回退的class*/
+#stepBar .isBack{
+    background-color: #eb9c9b;
+    color: #fff;
+    cursor: pointer;
+}
 
-
-
+/*完成按钮*/
+.finish{
+    display: block;
+    width: 80px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    background-color: #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #666;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.finish.act{
+    background-color: #d73938;
+    color: #fff;
+}

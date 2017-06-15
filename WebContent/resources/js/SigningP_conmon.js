@@ -108,11 +108,16 @@ $(function () {
 
     //点击下一步的交互效果
     function nextClickFun(el){
+        var ind = $(el)[0].className.substring(//根据截图class名判断是第几步页面
+            $(el)[0].className.indexOf('stepBox_0')+9,
+            $(el)[0].className.indexOf('stepBox_0')+10
+        );
         el.slideUp(200);
         el.next().fadeIn(200);
         setTimeout(function () {
-            $('#stepBar ul .active').removeClass('active')
-                .next().addClass('active');
+            $('#stepBar ul .active').removeClass('active');
+            $($('#stepBar ul li')[ind]).addClass('active');
+
         },200);
 
         $('html, body').animate({scrollTop:0}, 200);//滚动条滚动至顶部
@@ -121,9 +126,9 @@ $(function () {
     //第一步里 的同意协议勾选状态与“下一步”按钮状态交互
     function step01TestFun(){
         if($('.agreeBtn')[0].checked == false){
-            $('.step_next').removeClass('istrue');
+            $('.stepBox_01 .step_next').css('backgroundColor','#ccc');
         }else{
-            $('.step_next').addClass('istrue');
+            $('.stepBox_01 .step_next').css('backgroundColor','#d73938');
         }
     }
     step01TestFun();
@@ -234,26 +239,6 @@ $(function () {
 //TODO end 时间弹层
 
 
-//TODO 点击下一步交互
-    $('#stepContent').on('click','.step_next',function () {
-        //按钮非点击状态
-        if(!$(this).hasClass('istrue')){
-            //第一步不能点击的闪烁提示点
-            twinkleFun($('.stepBox_01 .stepForm_item'));
-
-            return false;
-        }
-        var parentCl = $(this).parent();
-        nextClickFun(parentCl);
-//  如果当前是第一步
-//        if(parentCl.hasClass('stepBox_01')){
-//            step01TestFun();
-//        }
-
-    });
-
-
-
 //TODO 多图片上传（餐厅实拍）
     function imgChange(obj1, obj2) {
         //获取点击的文本框
@@ -356,6 +341,28 @@ $(function () {
             });
         }
     });
+    //TODO 授权委托书
+    $('#stepContent').on('change','.atto',function () {
+        var _Url = window.URL.createObjectURL(this.files[0]);//图片地址
+        var img_name = this.files[0].name;//选择的图片的名称
+        if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(img_name)){
+            layer.msg("您上传的图片格式不正确，请重新选择!",{time:3000});
+            return false;
+        }else{
+            $('.atto_text').html('已选择文件');
+            $('.atto_name').html(img_name);
+            if($('.atto_img img').size()>0){
+                $('.atto_img img')[0].src = _Url;
+            }else{
+                $('.atto_img').append('<img src="'+_Url+'">');
+            }
+            $('.atto_img').css({
+                'marginTop' : '10px',
+                'width'     :'150px',
+                'height'    :'150px'
+            });
+        }
+    });
 
     //“选择文件”按钮的hover交互
     $('.busLic,.atto,.DCMcontract').size()> 0 && $('.busLic,.atto,.DCMcontract').bind('mouseover mouseout',function (e) {
@@ -382,6 +389,8 @@ $(function () {
         $(this).prev('i.radio_icon').addClass('act');
     });
 
+
+
     //TODO 点击下一步 当前步骤输入框等不能为空的验证
     //封装input、sleect的验证
     function inpSleTestFun(el){
@@ -398,7 +407,7 @@ $(function () {
 
             //封装提示和滚动方法
             function alertScrollFun(){
-                alert('"'+ inp_label +'"不能为空！');
+                layer.msg('"'+ inp_label +'"不能为空！',{time:3000});
                 var _top =inp_parent.offset().top;
                 //滚动至相应位置
                 $('html,body').animate({
@@ -450,7 +459,7 @@ $(function () {
 
             //封装提示和滚动方法
             function alertScrollFun(){
-                alert('"'+ sel_label +'"不能为空！');
+                layer.msg('"'+ sel_label +'"不能为空！',{time:3000});
                 var _top =sel_parent.offset().top;
                 //滚动至相应位置
                 $('html,body').animate({
@@ -469,39 +478,6 @@ $(function () {
         return true;
     }
 
-
-    //第二步验证：
-    $('.stepBox_02').on('click', '.step_next',function () {
-        if(!inpSleTestFun($('.stepBox_02'))){
-            return false;
-        }
-    });
-
-    //第三步验证：
-    $('.stepBox_03').on('click', '.step_next',function () {
-        if(!inpSleTestFun($('.stepBox_03'))){
-            return false;
-        }
-
-        /*
-         var timer = setInterval(function(){
-         console.log('每个三秒请求服务器开始……');
-
-         //$('.QRcode').hide();//隐藏二维码
-         //$('.isOK').show();//显示支付成功
-         //clearInterval(timer);//关闭定时器（不再请求服务器）
-
-         //将以上三行代码 放到ajax里 通过获取的值来控制定时器
-
-         },3000);
-         */
-
-
-
-
-    });
-
-
     $('select').find('option[value="-1"]').css({'color':'#999'});
     //下拉菜单 值为“-1”时 改变字体颜色
     $('select').on('change', function () {
@@ -514,5 +490,115 @@ $(function () {
         $(this).find('option[value="-1"]').css({'color':'#999'});
     });
 
-});
+//TODO 点击下一步交互
+    $('#stepContent').on('click','.step_next',function () {
 
+        var parentCl = $(this).parent();
+
+        //如果是第一步
+        if(parentCl.hasClass('stepBox_01')){
+            if( !($('.agreeBtn').is(":checked")) ){
+                twinkleFun($('.stepBox_01 .stepForm_item'));
+                return false;
+            }
+            $($('#stepBar>ul>li')[0]).addClass('isBack');//第一步添加可以回退的class
+            setTimeout(function () {
+                $($('#stepBar>ul>li')[1]).addClass('isBack');//第二步添加可以回退的class
+            },200);
+
+        }
+        //如果是第二步
+        if(parentCl.hasClass('stepBox_02')){
+            if(!inpSleTestFun($('.stepBox_02'))){
+                return false;
+            }
+            setTimeout(function () {
+                $($('#stepBar>ul>li')[2]).addClass('isBack');//第三步添加可以回退的class
+            },200);
+        }
+
+        //如果是第三步
+        if(parentCl.hasClass('stepBox_03')){
+            if(!inpSleTestFun($('.stepBox_03'))){
+                return false;
+            }
+            setTimeout(function () {
+                $($('#stepBar>ul>li')[3]).addClass('isBack');//第四步添加可以回退的class
+            },200);
+        }
+
+
+        nextClickFun(parentCl);//点击下一步的切换页面交互
+    });
+
+    //是否可以回退
+
+
+
+    $('#stepBar>ul>li').on('click',function () {
+        var liIndex = $(this).index()+1;//当前的的下标
+        if(!$(this).hasClass('isBack')){
+            return false;
+        }
+
+        var view = $('.step_form [class*="stepBox_"]:visible');//点击时当前显示的页面
+        if($(view)[0].className.indexOf('stepBox_01')<0){
+            //如果不是第一步页面就用inpSleTestFun方法验证
+            if(!inpSleTestFun($(view))){//验证当前视口的页面
+                return false;
+            }
+        }else{
+            //如果是第一步页面就只验证“<点餐猫商家协议>”复选框
+            if($('.agreeBtn')[0].checked == false){
+                twinkleFun($('.agreeBtn').parent());
+                return false
+            }
+        }
+
+        //点击当前样式变为焦点样式
+        $('#stepBar>ul>li.active').removeClass('active');
+        $(this).addClass('active');
+        //视口切换页面
+        $('[class *="stepBox_"]').slideUp(200);
+        $('[class ="stepBox_0'+liIndex+'"]').slideDown(200);
+
+    });
+
+
+    //第二步验证：
+    $('.stepBox_02').on('click', '.step_next',function () {
+        /*
+         if(!inpSleTestFun($('.stepBox_02'))){
+         return false;
+         }
+         */
+    });
+
+    //第三步验证：
+    $('.stepBox_03').on('click', '.step_next',function () {
+        /*
+         if(!inpSleTestFun($('.stepBox_03'))){
+         return false;
+         }
+
+
+         var timer = setInterval(function(){
+         console.log('每个三秒请求服务器开始……');
+
+         //$('#payqrcode').hide();//隐藏二维码
+         //$('.isOK').show();//显示支付成功
+         //clearInterval(timer);//关闭定时器（不再请求服务器）
+         //$('.finish').addClass('act');//“完成按钮显示可点击状态”
+
+         //将以上三行代码 放到ajax里 通过获取的值来控制定时器
+
+         },3000);
+         */
+    });
+
+    //第四步“完成”按钮 点击状态监听
+    $('.finish').on('click', function () {
+        if( !($(this).hasClass('act')) ){return false;}
+    });
+
+});

@@ -17,6 +17,10 @@
 
     <script type="text/javascript" src="resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery.nicescroll.min.js"></script>
+
+    <script type="text/javascript" src="resources/css/layui/layer.js"></script>
+    <link rel="stylesheet" href="resources/css/setLayerStyle.css"/>
+
     <link rel="stylesheet" href="resources/css/SigningP_common.css"/>
     <link rel="stylesheet" href="resources/css/SigningP_mediaStyle.css"/>
     <script type="text/javascript" src="resources/js/SigningP_conmon.js"></script>
@@ -59,7 +63,7 @@
         <div class="stepForm_item">
             <input class="agreeBtn" type="checkbox" checked="checked"/> &nbsp;&nbsp;我同意并遵守上述的《点餐猫商家协议》
         </div>
-        <a class="step_next istrue">下一步</a>
+        <a class="step_next">下一步</a>
     </div><!--end 第一步-->
 
 
@@ -97,15 +101,15 @@
                 <div class="checkboxitem">
                     <i class="radio_icon act"></i>
                     <input name="cooperate" type="radio" checked="checked" value="A"/>
-                    <span>方式A</span>
+                    <span>20%佣金方案</span>
                 </div>
                 <div class="checkboxitem">
                     <i class="radio_icon"></i>
                     <input name="cooperate" type="radio" value="B"/>
-                    <span>方式B</span>
+                    <span>15%佣金方案</span>
                 </div>
 
-                <a class="click_a">合作方式详情说明&gt;&gt;</a>
+                <a class="click_a">佣金方案详情说明&gt;&gt;</a>
                 
             </div>
         </div>
@@ -119,8 +123,6 @@
                 <input id='shop_name' class=" " type="text" name="restaurant_name"/>
             </div>
         </div>
-        
-       <!--  <a href="javascript:void(0);" onclick="updateregion()">更新地区</a> -->
 
         <!--所在地区-->
         <div class="stepForm_item">
@@ -132,6 +134,7 @@
 
                 <select class="shopIp_DQ" name="restaurant_city">
                     <option value="-1">全部</option>
+                    <option value="重庆">重庆</option>
                 </select>
 
                 <select class="shopIp_QX" name="restaurant_district">
@@ -141,6 +144,7 @@
                 <select class="shopIp_JD" name="restaurant_street">
                     <option value="-1">街道</option>
                 </select>
+                <a class="ip_update" href="javascript:void(0);" onclick="updateregion()"></a>
                 <span class="ip_prompt">如果餐厅所在地区未在列表内，请致电:400-992-9339</span>
             </div>
         </div>
@@ -149,7 +153,6 @@
             <label>餐厅类别：</label>
             <div class="form_box">
                 <select class="shopClass" name="restaurant_type">
-                   <!--  <option value="-1">火锅</option> -->
                     <c:forEach var="value" items="${typelist}">  
                                 <option value="${value.name}">  
                                 ${value.name}  
@@ -217,8 +220,6 @@
             <label>餐厅实拍：</label>
             <div class="form_box">
                 <!--    照片添加    -->
-                
-
                <div class="z_photo">
                     <div class="z_file">
                     	
@@ -228,8 +229,6 @@
                 </div>
 
 
-
-                
                 <!--遮罩层-->
                 <div class="z_mask">
                     <!--弹出框-->
@@ -314,7 +313,6 @@
         <div class="from_hr"></div>
 
         <a class="step_next istrue">下一步</a>
-                                <input type="submit" value="测试用提交按钮">
     </div><!--end第二步-->
 
 
@@ -379,7 +377,10 @@
     <div class="stepBox_04" style="display: none;">
         <p class="SigningP_a"><a href="explain" target="_blank">点餐猫商家签约流程详细说明&gt;&gt;</a></p>
         <div class="QRcode">
-		<div id="payqrcode"></div>
+            <div id="payqrcode"></div>
+            <div class="isOK">
+                <img src="img/isOK.png"/>
+            </div>
         </div>
         <p class="QR_text"><i class="QR_icon"></i>请使用微信扫描二维码以完成支付。</p>
 
@@ -408,6 +409,8 @@
             <p>400-992-9339</p>
         </div>
                         <input type="submit" value="测试用提交按钮">
+
+        <a class="finish">完成</a>
 
     </div><!--end第四步-->
     
@@ -482,7 +485,7 @@ $(function () {
                     var optionEL = $('<option data-id="' +
                         obj.id + '" ' +
                         'data-pid="' + obj.pid + '"' +
-                        'value="' + obj.pid + '-' + obj.id + '">' +
+                        'value="'+obj.pid+'-'+obj.id+','+obj.name+'">' +
                         obj.name + '' +
                         '</option>');
                     $('.shopIp_SS').append(optionEL);
@@ -498,7 +501,10 @@ $(function () {
         $('.shopIp_QX').html('<option value="-1">区/县</option>'); //清空区县
         $('.shopIp_JD').html('<option value="-1">街道</option>'); //清空街道
         if (this.value !== '-1') {
-            var datPid = $(this).val().substring($(this).val().indexOf('-') + 1);
+            var datPid = $(this).val().substring(
+                    $(this).val().indexOf('-')+1,
+                    $(this).val().indexOf(',')
+            );
             var optionHTML = '<option value="-1">全部</option>';
             $.ajax({
                 type: "POST",
@@ -511,7 +517,7 @@ $(function () {
                             '<option data-id="' +
                             obj.id + '" ' +
                             'data-pid="' + obj.pid + '"' +
-                            'value="' + obj.pid + '-' + obj.id + '">' +
+                            'value="'+obj.pid+'-'+obj.id+','+obj.name+'">' +
                             obj.name + '' +
                             '</option>';
                         }
@@ -528,7 +534,10 @@ $(function () {
         $('.shopIp_QX').html('<option value="-1">区/县</option>'); //清空区县
         $('.shopIp_JD').html('<option value="-1">街道</option>'); //清空街道
         if (this.value !== '-1') {
-            var datPid = $(this).val().substring($(this).val().indexOf('-') + 1);
+            var datPid = $(this).val().substring(
+                    $(this).val().indexOf('-')+1,
+                    $(this).val().indexOf(',')
+            );
             var optionHTML = '<option value="-1">区/县</option>';
             $.ajax({
                 type: "POST",
@@ -541,7 +550,7 @@ $(function () {
                             '<option data-id="' +
                             obj.id + '" ' +
                             'data-pid="' + obj.pid + '"' +
-                            'value="' + obj.pid + '-' + obj.id + '">' +
+                            'value="'+obj.pid+'-'+obj.id+','+obj.name+'">' +
                             obj.name + '' +
                             '</option>';
                         }
@@ -557,7 +566,10 @@ $(function () {
     $('.shopIp_QX').on('change', function() {
         $('.shopIp_JD').html('<option value="-1">街道</option>'); //清空街道
         if (this.value !== '-1') {
-            var datPid = $(this).val().substring($(this).val().indexOf('-') + 1);
+            var datPid = $(this).val().substring(
+                    $(this).val().indexOf('-')+1,
+                    $(this).val().indexOf(',')
+            );
             var optionHTML = '<option value="-1">街道</option>';
             $.ajax({
                 type: "POST",
@@ -570,7 +582,7 @@ $(function () {
                             '<option data-id="' +
                             obj.id + '" ' +
                             'data-pid="' + obj.pid + '"' +
-                            'value="' + obj.pid + '-' + obj.id + '">' +
+                            'value="'+obj.pid+'-'+obj.id+','+obj.name+'">' +
                             obj.name + '' +
                             '</option>';
                         }

@@ -27,7 +27,7 @@ public class StespDAOimp implements StespsDAO {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		
 		try {
-			List restaurantTypeList = jdbcTemplate.queryForList(sql); 
+			List<?> restaurantTypeList = jdbcTemplate.queryForList(sql); 
 			      		   
 			   return restaurantTypeList;
 		} catch (Exception e) {
@@ -39,37 +39,8 @@ public class StespDAOimp implements StespsDAO {
 
 	@Override
 	public void CompleteApplication(UserModel userModel, PayNotifyModel payNotifyModel) {
-		
-/*		System.out.println("userModel.getLightpay()="+userModel.getLightpay());
-		System.out.println("userModel.getCasherSystem()="+userModel.getCasherSystem());
-		System.out.println("userModel.getCooperatetype()="+userModel.getCooperatetype());
-		System.out.println("userModel.getRestaurantName()="+userModel.getRestaurantName());
-		System.out.println("userModel.getRestaurantType()="+userModel.getRestaurantType());
-		System.out.println("userModel.getRestaurantProvince()="+userModel.getRestaurantProvince());
-		System.out.println("userModel.getRestaurantCity()="+userModel.getRestaurantCity());
-		System.out.println("userModel.getRestaurantDistrict()="+userModel.getRestaurantDistrict());
-		System.out.println("userModel.getRestaurantStreet()="+userModel.getRestaurantStreet());		
-		System.out.println("userModel.getRestaurantAddress()="+userModel.getRestaurantAddress());	
-		System.out.println("userModel.getRestaurantTel()="+userModel.getRestaurantTel());
-		System.out.println("userModel.getRestaurantOpentime()="+userModel.getRestaurantOpentime());
-		System.out.println("userModel.getRestaurantClosetime()="+userModel.getRestaurantClosetime());
-		System.out.println("userModel.getRestaurantIndroduction()="+userModel.getRestaurantIndroduction());
-		System.out.println("userModel.getManagerPhone()="+userModel.getManagerPhone());
-		System.out.println("userModel.getBossPhone()="+userModel.getBossPhone());	
-		System.out.println("userModel.getBaseurl()="+userModel.getBaseurl());
-		System.out.println("userModel.getViewspath()="+userModel.getViewspath());	
-		System.out.println("userModel.getLicensepath()="+userModel.getLicensepath());
-		System.out.println("userModel.getContractpath()="+userModel.getContractpath());
-		System.out.println("userModel.getAttorneypath()="+userModel.getAttorneypath());
-		System.out.println("userModel.getBankaccountName()="+userModel.getBankaccountName());
-		System.out.println("userModel.getBankaccountBank()="+userModel.getBankaccountBank());
-		System.out.println("userModel.getBankaccountAccount()="+userModel.getBankaccountAccount());
-		System.out.println("payNotifyModel.getPay_result()="+payNotifyModel.getPay_result());
-		System.out.println("payNotifyModel.getTotal_fee()="+payNotifyModel.getTotal_fee());
-		System.out.println("payNotifyModel.getTime_end()="+payNotifyModel.getTime_end());
-		System.out.println("payNotifyModel.getOut_trade_no()="+payNotifyModel.getOut_trade_no());*/
-		
-		
+				
+	
 		String sql = "INSERT INTO ec_online_sign"
 				+ "(lightPay, casherSystem, cooperateType,restaurantName , restaurantType"
 				+ ",restaurantProvince,restaurantCity,restaurantDistrict,restaurantStreet"
@@ -83,7 +54,7 @@ public class StespDAOimp implements StespsDAO {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		
 	jdbcTemplate.update( sql,userModel.getLightpay(),userModel.getCasherSystem(),
-			userModel.getRestaurantName(),userModel.getCooperatetype(),
+			userModel.getCooperatetype(),userModel.getRestaurantName(),userModel.getRestaurantType(),
 			userModel.getRestaurantProvince(),userModel.getRestaurantCity(),
 			userModel.getRestaurantDistrict(),userModel.getRestaurantStreet(),
 			userModel.getRestaurantAddress(),userModel.getRestaurantTel(),
