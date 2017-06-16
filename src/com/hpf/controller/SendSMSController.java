@@ -33,7 +33,7 @@ public class SendSMSController {
         	//随机6位验证码
         	int verificationCode =(int) ((Math.random()*9+1)*100000);
         	String content ="喵~验证码"+verificationCode+",请绑定您的店长手机号码。";     		
-        	//YunPianSmsService.YunpianSendSms(managerphone,content,verificationCode);
+        	YunPianSmsService.YunpianSendSms(managerphone,content,verificationCode);
           	      	
         	return String.valueOf(verificationCode);
         }
@@ -48,7 +48,7 @@ public class SendSMSController {
         	//随机6位验证码
         	int verificationCode =(int) ((Math.random()*9+1)*100000);
         	String content ="喵~验证码"+verificationCode+",请绑定您的老板手机号码。";  
-        	//YunPianSmsService.YunpianSendSms(bossphone,content,verificationCode);
+        	YunPianSmsService.YunpianSendSms(bossphone,content,verificationCode);
                	
         	return String.valueOf(verificationCode);
         }
