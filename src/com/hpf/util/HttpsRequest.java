@@ -42,21 +42,5 @@ public class HttpsRequest {
 		{ buffer.append(line);}
 				
 		
-				return buffer.toString();}	
-	
-
-	
-	//≤‚ ‘
-/*	public static void main(String[] args) {
-		try {
-			HttpsRequest("https://www.baidu.com","GET","test");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}*/
-
-	
-	
+				return buffer.toString();}		
 }

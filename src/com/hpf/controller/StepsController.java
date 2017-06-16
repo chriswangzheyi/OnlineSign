@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;  
 import org.springframework.ui.ModelMap;
@@ -17,6 +20,7 @@ import com.hpf.model.PayModel;
 import com.hpf.model.PayNotifyModel;
 import com.hpf.model.TypeModel;
 import com.hpf.model.UserModel;
+
 import com.hpf.service.GetRegionInfoService;
 import com.hpf.service.WechatPay;
 import com.hpf.util.UUIDGenerator;
@@ -25,6 +29,8 @@ import com.hpf.util.UUIDGenerator;
 
 @Controller  
 public class StepsController {
+	
+	private static Log logger = LogFactory.getLog(StepsController.class.getName());
 	
 	@Autowired
 	private GetRegionInfoService getRegionInfoService;
@@ -48,7 +54,7 @@ public class StepsController {
 	PayNotifyModel PayNotifyModel;
     
 	//初始页面
-    @RequestMapping(value="/")  
+    @RequestMapping(value="/steps")  
     public String home(ModelMap model,HttpServletRequest request) { 
 
     	//生成微信支付码
@@ -58,6 +64,13 @@ public class StepsController {
     	//读取餐厅类型   	
     	List<?> typelist =stepsdao.GetRestaurantType(TypeModel);
     	request.setAttribute("typelist",typelist);
+    	
+    	//获取当前时间
+    	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");  	  
+    	java.util.Date currentTime = new java.util.Date();    	  
+    	String currentDate = formatter.format(currentTime); 	
+    	request.setAttribute("currentDate", currentDate);
+    	
     	    	  	
     	return "steps";  
     }  
@@ -159,6 +172,7 @@ public class StepsController {
                     
                 } catch (IOException e) {
                     e.printStackTrace();
+                    logger.error("上传多个文件出错，", e);
                 }  
             }
             
@@ -208,13 +222,14 @@ public class StepsController {
             	 
                  stepsdao.CompleteApplication(UserModel,PayNotifyModel);
             	} catch (Exception e) {  
-            	 e.printStackTrace();  
+            	 e.printStackTrace();
+            	 logger.error("上传单个文件出错，", e);
             	}  
                     
             // 成功
             
 
-            return "steps"; 
+            return "success"; 
         }  
         // 失败
         return "fail";  

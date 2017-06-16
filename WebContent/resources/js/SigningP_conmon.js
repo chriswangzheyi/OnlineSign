@@ -255,7 +255,7 @@ $(function () {
         for (var i = 0; i < fileList.length; i++) {
             var imgUrl = window.URL.createObjectURL(file.files[i]);
             if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(file.files[i].name)){
-                alert("您上传的图片格式不正确，请重新选择!");
+                layer.msg("您上传的图片格式不正确，请重新选择!",{time:3000});
                 return false;
             }else{
                 imgArr.push(imgUrl);
@@ -301,7 +301,7 @@ $(function () {
         var _Url = window.URL.createObjectURL(this.files[0]);//图片地址
         var img_name = this.files[0].name;//选择的图片的名称
         if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(img_name)){
-            alert("您上传的图片格式不正确，请重新选择!");
+            layer.msg("您上传的图片格式不正确，请重新选择!",{time:3000});
             return false;
         }else{
             $('.busLic_text').html('已选择文件');
@@ -324,7 +324,7 @@ $(function () {
         var _Url = window.URL.createObjectURL(this.files[0]);//图片地址
         var img_name = this.files[0].name;//选择的图片的名称
         if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(img_name)){
-            alert("您上传的图片格式不正确，请重新选择!");
+            layer.msg("您上传的图片格式不正确，请重新选择!",{time:3000});
             return false;
         }else{
             $('.DCMcontract_text').html('已选择文件');
@@ -512,6 +512,56 @@ $(function () {
             if(!inpSleTestFun($('.stepBox_02'))){
                 return false;
             }
+
+            //如果没有点击获取验证码 提示请点击验证码
+            if($('#manager_phone_validation').val()==""){
+                var phone_top =$('.callTest').offset().top;
+                //滚动至相应位置
+                $('html,body').animate({
+                    scrollTop: $('.callTest').offset().top - 60
+                }, 200);
+                layer.msg("请获取手机验证码！",{time:3000});
+                return false;
+            }
+
+            //验证店长手机号的验证码
+            var manager_phone = $('input[name="manager_phone_code"]').val();
+            if(manager_phone !==  $('#manager_phone_validation').val()){
+                var phone_top =$('#manager_phone').offset().top;
+                //滚动至相应位置
+                $('html,body').animate({
+                    scrollTop: $('#manager_phone').offset().top - 60
+                }, 200);
+                //当前闪烁提示
+                setTimeout(function () {
+                    twinkleFun($('input[name="manager_phone_code"]'));
+                },200);
+                layer.tips('您输入的验证码不正确，<br/>请重新输入！', 'input[name="manager_phone_code"]',{
+                    time:3000,
+                    tips: [3, '#e94e4b']
+                });
+                return false;
+            }
+
+            //验证老板手机号的验证码
+            var boss_phone = $('input[name="boss_phone_code"]').val();
+            if(boss_phone !==  $('#boss_phone_validation').val()){
+                var phone_top =$('#boss_phone').offset().top;
+                //滚动至相应位置
+                $('html,body').animate({
+                    scrollTop: $('#boss_phone').offset().top - 60
+                }, 200);
+                //当前闪烁提示
+                setTimeout(function () {
+                    twinkleFun($('input[name="boss_phone_code"]'));
+                },200);
+                layer.tips('您输入的验证码不正确，<br/>请重新输入！', 'input[name="boss_phone_code"]',{
+                    time:3000,
+                    tips: [3, '#e94e4b']
+                });
+                return false;
+            }
+
             setTimeout(function () {
                 $($('#stepBar>ul>li')[2]).addClass('isBack');//第三步添加可以回退的class
             },200);
@@ -532,9 +582,6 @@ $(function () {
     });
 
     //是否可以回退
-
-
-
     $('#stepBar>ul>li').on('click',function () {
         var liIndex = $(this).index()+1;//当前的的下标
         if(!$(this).hasClass('isBack')){
@@ -565,35 +612,57 @@ $(function () {
     });
 
 
-    //第二步验证：
-    $('.stepBox_02').on('click', '.step_next',function () {
-        /*
-         if(!inpSleTestFun($('.stepBox_02'))){
-         return false;
-         }
-         */
+    //TODO 实时监听短信验证码 是否正确
+    //店长手机
+    $('input[name="manager_phone_code"]').bind('input propertychange', function () {
+        var _v = $(this).val();
+        if(_v == $('#manager_phone_validation').val()){
+            $(this).addClass('succ');
+        }else{
+            $(this).removeClass('succ');
+        }
     });
+
+    //老板手机
+    $('input[name="boss_phone_code"]').bind('input propertychange', function () {
+        var _v = $(this).val();
+        if(_v == $('#boss_phone_validation').val()){
+            $(this).addClass('succ');
+        }else{
+            $(this).removeClass('succ');
+        }
+    });
+
+
 
     //第三步验证：
     $('.stepBox_03').on('click', '.step_next',function () {
-        /*
-         if(!inpSleTestFun($('.stepBox_03'))){
-         return false;
-         }
+        var timer = setInterval(function(){
+            //每隔三秒请求验证是否扫码成功……
+            $.ajax({
+                type: "POST",
+                url: "paynotify",
+                success: function(data){
+                    if(data == 0){
+                        //显示支付成功
+                        $('.QRcode').html('<div class="isOK">'+
+                            '<img src="resources/img/isOK.png"/>'+
+                            '</div>');
+                        //顶部面包屑不能回退
+                        $('#stepBar>ul>li.isBack').removeClass('isBack');
 
+                        //完成按钮可点击
+                        $('.finish').addClass('act');
 
-         var timer = setInterval(function(){
-         console.log('每个三秒请求服务器开始……');
-
-         //$('#payqrcode').hide();//隐藏二维码
-         //$('.isOK').show();//显示支付成功
-         //clearInterval(timer);//关闭定时器（不再请求服务器）
-         //$('.finish').addClass('act');//“完成按钮显示可点击状态”
-
-         //将以上三行代码 放到ajax里 通过获取的值来控制定时器
-
-         },3000);
-         */
+                        //提交表格
+                        $('#protocolFrom').submit();
+                        
+                        //关闭定时器
+                        clearInterval(timer);//关闭定时器（不再请求服务器）
+                    }
+                }
+            });
+        },3000);
     });
 
     //第四步“完成”按钮 点击状态监听

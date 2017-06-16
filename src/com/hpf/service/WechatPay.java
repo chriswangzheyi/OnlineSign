@@ -4,10 +4,13 @@ package com.hpf.service;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import com.hpf.controller.StepsController;
 import com.hpf.model.PayModel;
 import com.hpf.util.Generator;
 import com.hpf.util.HttpsRequest;
@@ -19,6 +22,8 @@ import com.hpf.util.XStreamUtil;
 
 @Component
 public class WechatPay {
+	
+	private static Log logger = LogFactory.getLog(WechatPay.class.getName());
 	
 	@Autowired
 	PayModel payModel;
@@ -32,7 +37,8 @@ public class WechatPay {
 		String body="测试"; //商品描述
 		int total_fee=1; //总金额,单位为分
 		String mch_create_ip="218.70.106.206";
-		String notify_url="http://1q73x43283.51mypc.cn:11191/paynotify";
+		//String notify_url="http://1q73x43283.51mypc.cn:11191/paynotify";
+		String notify_url="http://merchant.register.hme.cn/paynotify";
 		String key="9d101c97133837e13dde2d32a5054abb";
 		String nonce_str=Generator.getRandomNonceStr(32);
 
@@ -77,8 +83,9 @@ public class WechatPay {
 			
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			logger.error("生成微信支付二维码出错",e);
 		}
 		return null;
 		

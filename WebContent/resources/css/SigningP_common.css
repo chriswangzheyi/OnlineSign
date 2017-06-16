@@ -339,6 +339,7 @@ body{background-color: #fff;}
 
 .shop_int{
     resize: none;
+    padding: 5px;
     width: 50%;
     text-align: left;
     line-height: 20px;
@@ -585,7 +586,6 @@ input.DCMcontract::-webkit-file-upload-button {
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 10px;
-    display: none;
 }
 .QRcode img,
 .isOK img{
@@ -796,4 +796,16 @@ select option[value="-1"]{
 .finish.act{
     background-color: #d73938;
     color: #fff;
+}
+.callTest{
+    color: #666;
+}
+
+/*短信验证码输入框正确时 添加图标“勾”*/
+input.succ{
+    padding-right: 27px;
+    background-image: url(../img/icon_success.png);
+    background-repeat: no-repeat;
+    background-size: 22px 13px;
+    background-position: right center;
 }

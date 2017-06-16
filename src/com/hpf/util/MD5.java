@@ -2,8 +2,15 @@ package com.hpf.util;
 
 import java.security.MessageDigest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.hpf.controller.StepsController;
+
 
 public class MD5 {
+	
+	private static Log logger = LogFactory.getLog(MD5.class.getName());
 	
 	private static String byteArrayToHexString(byte b[]) {
         StringBuffer resultSb = new StringBuffer();
@@ -34,6 +41,7 @@ public class MD5 {
                 resultString = byteArrayToHexString(md.digest(resultString
                         .getBytes(charsetname)));
         } catch (Exception exception) {
+        	logger.error("MD5´íÎó£¬",exception);
         }
         return resultString;
     }

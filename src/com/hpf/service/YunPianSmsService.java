@@ -1,6 +1,8 @@
 package com.hpf.service;
 
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpEntity;  
 import org.apache.http.NameValuePair;  
 import org.apache.http.client.entity.UrlEncodedFormEntity;  
@@ -9,7 +11,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;  
 import org.apache.http.impl.client.HttpClients;  
 import org.apache.http.message.BasicNameValuePair;  
-import org.apache.http.util.EntityUtils;  
+import org.apache.http.util.EntityUtils;
+
+import com.hpf.controller.StepsController;
+
 import java.io.IOException;  
 import java.net.URISyntaxException;  
 import java.net.URLEncoder;  
@@ -25,6 +30,8 @@ import java.util.Map;
 */  
   
 public class YunPianSmsService {  
+	
+private static Log logger = LogFactory.getLog(StepsController.class.getName());	
   
 //智能匹配模版发送接口的http地址  
 private static String URI_SEND_SMS = "http://yunpian.com/v1/sms/send.json";  
@@ -52,6 +59,7 @@ public static void YunpianSendSms(String phone, String content, int verification
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		logger.error("云片网模板出错",e);
 	}
 }
 

@@ -2,6 +2,8 @@ package com.hpf.util;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -9,10 +11,11 @@ import org.dom4j.Element;
 import org.springframework.stereotype.Component;
 
 
+
 @Component
 public class PayNotifyXMLDecoder {
 	
-	
+	private static Log logger = LogFactory.getLog(PayNotifyXMLDecoder.class.getName());
 	
 	public static String getXMLInfo(String xml, String paraExpected){
 
@@ -57,6 +60,7 @@ public class PayNotifyXMLDecoder {
 				
 			
 		} catch (DocumentException e) {
+			logger.error("½âÎöXML³ö´í£¬",e);
 			e.printStackTrace();
 		}
 		

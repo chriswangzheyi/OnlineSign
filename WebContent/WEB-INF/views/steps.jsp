@@ -46,19 +46,64 @@
 <!--第一步-->
     <div class="stepBox_01" style="display: block;">
         <div class="dcm_Protocol">
-            <p><h4>《点餐猫商家协议》</h4></p>
+            <p><h4>《点餐猫商户服务协议》</h4></p>
             <p><br/></p>
             <p>本协议是您（以下称“甲方”）与重庆浩品峰电子商务有限公司（以下合称“乙方”）就甲方使用点餐猫平台服务相关事项所订立的有效合约。甲方通过网络页面点击确认或以其他乙方认可的方式接受本协议，即表示甲方与乙方就本协议达成一致并同意接受本协议的全部约定内容。如您不同意接受本协议的任意内容，或者无法准确理解相关条款含义的，请不要进行后续操作。</p>
-            <p></p>
-            <p><h4>目录</h4></p>
             <p><br/></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aliquid blanditiis dolores eos excepturi facilis inventore ipsa libero minus molestias natus nisi obcaecati porro, saepe sequi tempora ullam voluptates?</p>
-            <p>点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议</p>
-            <p><h4>点餐猫商家协议</h4></p>
+            <p>目录</p>
+            <p>第一条   定义</p>
+            <p>第二条   点餐猫服务</p>
+            <p>第二条   点餐猫服务</p>
+            <p>第三条   一般性权利义务</p>
+            <p>第四条   运营合作</p>
+            <p>第五条   服务费用及支付方式</p>
+            <p>第五条   服务费用及支付方式</p>
+            <p>第六条   点餐猫授权条款</p>
+            <p>第七条   免责及有限责任</p>
+            <p>第八条   违约责任</p>
+            <p>第九条   协议终止</p>
+            <p>第十条   其他约定</p>
+            
+            
             <p><br/></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aliquid blanditiis dolores eos excepturi facilis inventore ipsa libero minus molestias natus nisi obcaecati porro, saepe sequi tempora ullam voluptates?</p>
-            <p>点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议点餐猫商家协议</p>
+            <p>甲方和乙方在平等、自愿、公平的基础上，经过友好协商，就重庆浩品峰电子商务有限公司运营的点餐猫平台合作事宜所达成以下共识：</p>
+            <p><br/></p>
+            <p><h4>第一条 定义</h4></p>
+            <p>1、点餐猫平台，是指乙方提供网络信息服务及相应软件技术服务的平台，点餐猫平台包括但不限于网址www.hme.cn，或乙方根据业务需要不时修改的URL，以及甲方使用的相应点餐猫客户端软件（如有）、点餐猫平台后台系统等，以下简称点餐猫平台。
+            </p>
+            <p><br/></p>
+            <p>2、点餐猫公司，是重庆浩品峰电子商务有限公司的简称。</p>
+            <p><br/></p>
+            <p>3、交易流量，指由点餐猫公司所统计的甲方通过附件约定点餐猫服务所完成交易的金额。</p>
+            <p><br/></p>
+            <p>4、商户制度：指点餐猫在点餐猫平台或其他渠道上已发布或将来发布的各类制度、规则及/或规则条款的统称。</p>
+           
+            <p><br/></p>
+            <p><h4>第二条 点餐猫服务</h4></p>
+            <p>1、点餐猫平台服务，乙方基于点餐猫平台为甲方提供的网络信息服务及相应软件技术服务。  </p>
+            <p><br/></p>
+            <p>2、点餐猫运营服务，甲方可通过乙方运营的工具或平台（包括但不限于点餐猫收银系统、点餐猫店小二APP、商户APP、点餐猫商家后台等，具体的运营工具、运营平台，乙方可根据实际情况调整）向用户展示和/或互动相关信息、配置甲方优惠活动等。
+</p>
 
+            <p><br/></p>
+            <p><h4>第三条 一般性权利义务</h4></p>
+            <p>1、本协议项下，重庆浩品峰电子商务有限公司向甲方提供与点餐猫平台相关网络技术及软件技术服务及与点餐猫平台相关的网络信息服务。  </p>
+            <p><br/></p>
+            <p>2、甲方应保证其为一家合法成立并有效存续的法人或其它商事主体，能够独立承担法律责任，并具有履行本合同所需的一切权利及能力；同时甲方应当按乙方要求提供有效身份资料。</p>
+            <p><br/></p>
+            <p>3、甲方同意，对于甲方在使用点餐猫平台过程中提供、上传、形成的信息（包括经营情况、优惠信息、优惠核销信息、图片、评价、文字等），乙方具有所有权和使用权，且乙方有权将上述信息传递给点餐猫等其他相关服务提供者。同时，甲方仍可无条件继续使用上述信息。</p>
+            <p><br/></p>
+            <p>4、甲方同意，乙方可将甲方数据与其他商户数据进行比较分析，并在不向其他商户透露甲方具体信息的情况下，将分析结果（包括但不限于某一区域内点餐猫平台商户的折扣券核销率等）提供给其他商户和甲方。但分析结果仅供甲方参考，如甲方使用分析结果而产的任何损失与乙方无关。</p>
+            <p><br/></p>
+            <p>5、甲方不得向乙方或乙方关联公司的员工、顾问提供任何形式的不正当利益，不得贿赂或以其他不正当方式收买、企图收买乙方或乙方关联企业之员工、顾问为甲方提供不正当利益。
+</p>
+            <p><br/></p>
+            <p>6、因甲方使用点餐猫平台服务的收款账户有多个，故甲方承诺如乙方需要按照本协议约定从甲方及其甲方设定的甲方门店收款账户中扣取款项的，甲方已就此获得了甲方设定的甲方门店收款账户的账户持有人同意。
+</p>
+            <p>
+7、甲方理解并同意，并非所有行业的商户都可以在点餐猫平台上展示线上门店，具体可展示线上门店的行业以点餐猫平台实际开放的为准。
+            <p><br/></p>
+           
         </div>
         <div class="stepForm_item">
             <input class="agreeBtn" type="checkbox" checked="checked"/> &nbsp;&nbsp;我同意并遵守上述的《点餐猫商家协议》
@@ -144,7 +189,7 @@
                 <select class="shopIp_JD" name="restaurant_street">
                     <option value="-1">街道</option>
                 </select>
-                <a class="ip_update" href="javascript:void(0);" onclick="updateregion()"></a>
+                <a class="ip_update" href="javascript:void(0);" onclick="updateRegion()"></a>
                 <span class="ip_prompt">如果餐厅所在地区未在列表内，请致电:400-992-9339</span>
             </div>
         </div>
@@ -252,6 +297,10 @@
                 <p class="explain">用于接收流水及结算数据报告</p>
             </div>
         </div>
+        
+        <a class="callTest" href="javascript:void(0);" onclick="getPayResult()">测试payresult</a>
+        
+        
         <div class="stepForm_item">
             <label>短信验证码：</label>
             <div class="form_box">
@@ -379,7 +428,7 @@
         <div class="QRcode">
             <div id="payqrcode"></div>
             <div class="isOK">
-                <img src="img/isOK.png"/>
+                <img src="resources/img/isOK.png"/>
             </div>
         </div>
         <p class="QR_text"><i class="QR_icon"></i>请使用微信扫描二维码以完成支付。</p>
@@ -399,7 +448,7 @@
                     创建时间
                 </td>
                 <td>
-                    2017-05-12
+                   ${currentDate}
                 </td>
             </tr>
         </table>
@@ -421,6 +470,7 @@
     <input type="hidden" id="boss_phone_validation" name="boss_phone_validation" value="${boss_phone_validation}" />
     <input type="hidden" id="manager_phone_validation" name="manager_phone_validation" value="${manager_phone_validation}" />
  
+
     </form>
 
 </div>
@@ -437,8 +487,10 @@ function sendsmsformanager(){
  		 $.ajax({
 	        type: "GET",
 	        url: "sendsmsformanager?managerphone="+managerphone,
-	        success: function() {
-	        }	       	        
+	        success: function(data) {
+	        	var manager_code= data;
+	        	
+	        }	       	     
 		}) 
 }
 
@@ -449,7 +501,21 @@ function sendsmsforboss(){
  		 $.ajax({
 	        type: "GET",
 	        url: "sendsmsforboss?bossphone="+bossphone,
-	        success: function() {
+	        success: function(data) {
+	        	var boss_code= data;
+	        }	       	        
+		}) 
+}
+
+//得到支付状态
+function getPayResult(){
+	
+ 		 $.ajax({
+	        type: "GET",
+	        url: "paynotify",
+	        success: function(data) {
+	        	var pay_result= data;
+	        	alert(pay_result)
 	        }	       	        
 		}) 
 }
@@ -463,13 +529,6 @@ function updateRegion(){
 	        }	       	        
 		}) 
 }
-
-//Radio selector
-function radioselect(para){
-    var para = para.value;
-    alert("选中的值----"+str);
-}
-
 
 
 $(function () {
@@ -627,7 +686,7 @@ $(function () {
         map.addControl(new BMap.NavigationControl());
 
         //创建点餐猫地标
-        var myIcon_dcm = new BMap.Icon("img/map_icon.png", new BMap.Size(30,30));
+        var myIcon_dcm = new BMap.Icon("resources/img/map_icon.png", new BMap.Size(30,30));
 
         // 将标注添加到地图中
         map.addOverlay(new BMap.Marker(point));
