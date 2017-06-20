@@ -71,6 +71,33 @@ function windowHeigthChange(){
 
 $(function () {
 
+    //给店长发短信
+    function sendsmsformanager(){
+        var managerphone = document.getElementById('manager_phone').value;
+        $.ajax({
+            type: "GET",
+            url: "sendsmsformanager?managerphone="+managerphone,
+            success: function(data) {
+                manager_code= data;
+                $('#manager_phone_validation').val(manager_code);
+            }
+        });
+    }
+
+    //给老板发短信
+    function sendsmsforboss(){
+        var bossphone = document.getElementById('boss_phone').value;
+        $.ajax({
+            type: "GET",
+            url: "sendsmsforboss?bossphone="+bossphone,
+            success: function(data) {
+                var boss_code= data;
+                $('#boss_phone_validation').val(boss_code);
+            }
+        });
+    }
+
+
     // 获取窗口高度
     var winHeight=500;
     function getWinHeightFun(){
@@ -514,7 +541,7 @@ $(function () {
             }
 
             //如果没有点击获取验证码 提示请点击验证码
-            if($('#manager_phone_validation').val()==""){
+            if($('#manager_phone_validation').val() == "" ){
                 var phone_top =$('.callTest').offset().top;
                 //滚动至相应位置
                 $('html,body').animate({
@@ -545,7 +572,7 @@ $(function () {
 
             //验证老板手机号的验证码
             var boss_phone = $('input[name="boss_phone_code"]').val();
-            if(boss_phone !==  $('#boss_phone_validation').val()){
+            if(boss_phone !== $('#boss_phone_validation').val()){
                 var phone_top =$('#boss_phone').offset().top;
                 //滚动至相应位置
                 $('html,body').animate({
@@ -643,7 +670,7 @@ $(function () {
                 type: "POST",
                 url: "paynotify",
                 success: function(data){
-                    if(data == 0){
+                    if(data == "0"){
                         //显示支付成功
                         $('.QRcode').html('<div class="isOK">'+
                             '<img src="resources/img/isOK.png"/>'+
@@ -668,6 +695,65 @@ $(function () {
     //第四步“完成”按钮 点击状态监听
     $('.finish').on('click', function () {
         if( !($(this).hasClass('act')) ){return false;}
+    });
+
+//TODO 倒计时按钮的交互
+    //倒计时按钮交互的封装方法
+    function countDownFun(n/*计时初始值*/,el/*点击的按钮*/){
+        if($(el).css('position') == 'static'){
+            $(el).css('position','relative');
+        }
+        var cdEL =$('<button disabled="disabled" class="countDown">'+n+'s</button>');
+
+        //如果点击的按钮的背景色是透明的 则改变倒计时框的背景色
+        if($(el).css('backgroundColor') == 'rgba(0, 0, 0, 0)'){
+            cdEL.css('backgroundColor','rgba(255, 255, 255, 0.7)');
+        }
+        $(el).append(cdEL);
+        var countDown=setInterval(function(){
+            n--;
+            $(el).find(".countDown").html(n+'s');
+
+            if(n==0){
+                clearInterval(countDown);
+                $(el).find(".countDown").remove();
+            }
+        },1000);
+    }
+    //更新地址按钮的倒计时 5秒
+    $('.ip_update').on('click', function () {
+        countDownFun(5,$(this));
+    });
+
+    //短信验证码的倒计时 60秒
+    $('.callTest').on('click', function () {
+        //如果点击的是店长手机的验证码按钮
+        if($(this).hasClass('managerBtn')){
+            var managerphone = document.getElementById('manager_phone').value;
+            if( !(/^1[34578]\d{9}$/.test(managerphone)) ){
+                layer.tips('您输入的手机号有误!<br/>请重新输入！', '#manager_phone',{
+                    time:3000,
+                    tips: [3, '#e94e4b']
+                });
+                return false;
+            }
+            sendsmsformanager();//ajax获取验证码
+        }
+
+        //如果点击的是店长手机的验证码按钮
+        if($(this).hasClass('bossBtn')){
+            var bossphone = document.getElementById('boss_phone').value;
+            if( !(/^1[34578]\d{9}$/.test(bossphone)) ){
+                layer.tips('您输入的手机号有误!<br/>请重新输入！', '#boss_phone',{
+                    time:3000,
+                    tips: [3, '#e94e4b']
+                });
+                return false;
+            }
+            sendsmsforboss();//ajax获取验证码
+        }
+
+        countDownFun(60,$(this));// 验证码倒计时开始
     });
 
 });

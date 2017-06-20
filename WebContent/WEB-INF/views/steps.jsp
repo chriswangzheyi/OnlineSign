@@ -192,7 +192,7 @@
     </div><!--end 第一步-->
 
 
-<!--第二步-->
+ <!--第二步-->
     <div class="stepBox_02" style="display: none;">
         <p class="SigningP_a"><a href="explain" target="_blank">点餐猫商家签约流程详细说明&gt;&gt;</a></p>
 
@@ -211,7 +211,7 @@
                     <input type="checkbox" name="casher_system"/>
                     <span>点餐猫智能收银系统</span>
                 </div>
-                <a class="click_a">产品详情说明&gt;&gt;</a>
+                <a class="click_a" href="explain_product.html" target="_Blank">产品详情说明&gt;&gt;</a>
 
             </div>
         </div>
@@ -373,14 +373,11 @@
         <div class="stepForm_item">
             <label>店长手机：</label>
             <div class="form_box">
-                <input type="text" class="callInput" name="manager_phone" id="manager_phone"/><a class="callTest" href="javascript:void(0);" onclick="sendsmsformanager()">验证码</a>
+                <input type="text" class="callInput" name="manager_phone" id="manager_phone"/><a class="callTest managerBtn" >验证码</a>
                 <p class="explain">用于接收流水及结算数据报告</p>
             </div>
         </div>
-        
-        <a class="callTest" href="javascript:void(0);" onclick="getPayResult()">测试payresult</a>
-        
-        
+                
         <div class="stepForm_item">
             <label>短信验证码：</label>
             <div class="form_box">
@@ -394,7 +391,7 @@
         <div class="stepForm_item">
             <label>老板手机：</label>
             <div class="form_box">
-                <input type="text" class="callInput" name="boss_phone" id="boss_phone"/><a class="callTest" href="javascript:void(0);" onclick="sendsmsforboss()">验证码</a>
+                <input type="text" class="callInput" name="boss_phone" id="boss_phone"/><a class="callTest bossBtn">验证码</a>
                 <p class="explain">餐厅扫码注册推荐关系的所属</p>
             </div>
         </div>
@@ -442,8 +439,7 @@
         <div class="from_hr"></div>
 
         <a class="step_next istrue">下一步</a>
-    </div><!--end第二步-->
-
+    </div><!--end第二步--> 
 
 
 
@@ -507,9 +503,6 @@
         <p class="SigningP_a"><a href="explain" target="_blank">点餐猫商家签约流程详细说明&gt;&gt;</a></p>
         <div class="QRcode">
             <div id="payqrcode"></div>
-            <div class="isOK">
-                <img src="resources/img/isOK.png"/>
-            </div>
         </div>
         <p class="QR_text"><i class="QR_icon"></i>请使用微信扫描二维码以完成支付。</p>
 
@@ -537,19 +530,21 @@
             <p>客服热线</p>
             <p>400-992-9339</p>
         </div>
-                        <input type="submit" value="测试用提交按钮">
+   <!--                      <input type="submit" value="测试用提交按钮"> -->
 
-        <a class="finish">完成</a>
+        <input type="submit" class="finish" value="完成"/>
 
     </div><!--end第四步-->
     
     
   	<!--   传值用 -->
     <input type="hidden" id="qrcodeurl" name="qrcodeurl" value="${qrcodeurl}" />
+    <input type="hidden" id="outtradeno" name="out_trade_no" value="${out_trade_no}" />
     <input type="hidden" id="payresult" name="payresult" value="${payresult}" />
-    <input type="hidden" id="boss_phone_validation" name="boss_phone_validation" value="${boss_phone_validation}" />
-    <input type="hidden" id="manager_phone_validation" name="manager_phone_validation" value="${manager_phone_validation}" />
- 
+    <input type="hidden" id="boss_phone_validation" name="boss_phone_validation" value="${boss_phone_validation}"/>
+    <input type="hidden" id="manager_phone_validation" name="manager_phone_validation" value="${manager_phone_validation}"/>
+
+<!-- <a href="javascript:void(0);" onclick="getPayResult()">测试 pay result</a> -->
 
     </form>
 
@@ -560,32 +555,7 @@
 
 <script>
 
-//给店长发短信
-function sendsmsformanager(){
-	
-	var managerphone = document.getElementById('manager_phone').value;	
- 		 $.ajax({
-	        type: "GET",
-	        url: "sendsmsformanager?managerphone="+managerphone,
-	        success: function(data) {
-	        	var manager_code= data;
-	        	
-	        }	       	     
-		}) 
-}
 
-//给老板发短信
-function sendsmsforboss(){
-	
-	var bossphone = document.getElementById('boss_phone').value;	
- 		 $.ajax({
-	        type: "GET",
-	        url: "sendsmsforboss?bossphone="+bossphone,
-	        success: function(data) {
-	        	var boss_code= data;
-	        }	       	        
-		}) 
-}
 
 //得到支付状态
 function getPayResult(){

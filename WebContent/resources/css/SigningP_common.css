@@ -1,4 +1,4 @@
-/*样式初始化*/
+/*鏍峰紡鍒濆鍖�*/
 *{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -18,7 +18,7 @@ img{border:0;}
 
 
 .clear:after{content:""; display:block; height:0;line-height: 0; visibility:hidden; clear:both; }
-/**栅格系统**/
+/**鏍呮牸绯荤粺**/
 .row{ margin: 0 -15px;}
 .col-12 {  width: 100%;  }
 .col-11 {  width: 91.66666667%;  }
@@ -230,7 +230,7 @@ body{background-color: #fff;}
 }
 
 
-/*时间选择弹层*/
+/*鏃堕棿閫夋嫨寮瑰眰*/
 .shopHours_List {
     position: fixed;
     top: 0;
@@ -329,7 +329,7 @@ body{background-color: #fff;}
     float: right;
 }
 
-/*时间选择弹层*/
+/*鏃堕棿閫夋嫨寮瑰眰*/
 .shopHours_start{
     margin-right: 5px;
 }
@@ -347,7 +347,7 @@ body{background-color: #fff;}
     height: 100px;
 }
 
-/*******餐厅实拍********/
+/*******椁愬巺瀹炴媿********/
 
 .z_photo img {
     width: 100px;
@@ -402,7 +402,7 @@ body{background-color: #fff;}
     opacity: 0;
 }
 
-/*遮罩层*/
+/*閬僵灞�*/
 
 .z_mask {
     width: 100%;
@@ -537,7 +537,7 @@ input.DCMcontract::-webkit-file-upload-button {
     left: 110px;
     max-width: calc(100% - 110px);
 
-    /*单行溢出*/
+    /*鍗曡婧㈠嚭*/
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
@@ -679,7 +679,7 @@ input.DCMcontract::-webkit-file-upload-button {
 select option[value="-1"]{
     color: #999;
 }
-/*第二步的产品选择和合作方式*/
+/*绗簩姝ョ殑浜у搧閫夋嫨鍜屽悎浣滄柟寮�*/
 .checkBox{
     width: 100%;
     overflow: hidden;
@@ -748,7 +748,7 @@ select option[value="-1"]{
     cursor: pointer;
     margin-left: 30px;
 }
-/*所在地区提示语*/
+/*鎵�鍦ㄥ湴鍖烘彁绀鸿*/
 .ip_prompt{
     position: absolute;
     left: 0;
@@ -758,28 +758,29 @@ select option[value="-1"]{
     color: #999;
 }
 
-/*更新地区*/
+/*鏇存柊鍦板尯*/
 .ip_update{
     display: inline-block;
     width: 32px;
-    height: 23px;
+    height: 35px;
     background-image: url("../img/update_ip.png");
     background-repeat: no-repeat;
     background-size: 32px 23px;
+    background-position: left center;
     line-height: 35px;
     margin-left: 10px;
-    margin-top: 5.5px;
+    position: relative;
     cursor: pointer;
 }
 
-/*可回退的class*/
+/*鍙洖閫�鐨刢lass*/
 #stepBar .isBack{
     background-color: #eb9c9b;
     color: #fff;
     cursor: pointer;
 }
 
-/*完成按钮*/
+/*瀹屾垚鎸夐挳*/
 .finish{
     display: block;
     width: 80px;
@@ -801,7 +802,7 @@ select option[value="-1"]{
     color: #666;
 }
 
-/*短信验证码输入框正确时 添加图标“勾”*/
+/*鐭俊楠岃瘉鐮佽緭鍏ユ姝ｇ‘鏃� 娣诲姞鍥炬爣鈥滃嬀鈥�*/
 input.succ{
     padding-right: 27px;
     background-image: url(../img/icon_success.png);
@@ -809,3 +810,22 @@ input.succ{
     background-size: 22px 13px;
     background-position: right center;
 }
+
+/********************/
+
+.countDown{
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(102, 102, 102);
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+
+}
+

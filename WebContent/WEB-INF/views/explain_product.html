@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>产品详情说明</title>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/SigningP_common.css"/>
+    <link rel="stylesheet" href="css/SigningP_mediaStyle.css"/>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5shiv.min.js"></script>
+    <script type="text/javascript" src="js/respond.min.js"></script>
+    <![endif]-->
+    
+    <style>
+       .product_header{
+           max-width: 1000px;
+           width: 100%;
+           margin: 0 auto;
+           padding-top: 50px;
+           height: 260px;
+           background-color: #fff;
+       }
+       .product_Rec,.product_Cas{
+           float: left;
+           width: 50%;
+           min-width: 180px;
+           height: 210px;
+           background-color: #fff;
+       }
+       .product_header img{
+           width: 100%;
+           height:100%;
+       }
+       .product_Rec a,.product_Cas a{
+           display: block;
+           width: 180px;
+           height: 210px;
+           margin: 0 auto;
+           position: relative;
+       }
+
+       .product_header a.act{
+           background-image: url("img/bg_product_arrow.png");
+           background-repeat: no-repeat;
+           background-size: 24px 16px;
+           background-position: center bottom;
+           
+       }
+        .product_main{
+            clear: both;
+            max-width: 1000px;
+            width: 100%;
+            background-color: #ecf0f1;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+       .product_Rec_content,
+       .product_Cas_content{
+           padding: 20px calc((50% - 180px) / 2);
+       }
+        .product_Rec_content p,
+        .product_Cas_content p{
+            line-height: 20px;
+            font-size: 14px;
+            color: #333;
+            text-indent:28px;
+        }
+       .product_Rec_content h2,
+       .product_Cas_content h2{
+           line-height: 40px;
+           font-size: 18px;
+           font-weight: bold;
+           text-align: center;
+       }
+        .bg_h2Hr{
+            height: 12px;
+            width: 100%;
+            margin-bottom: 10px;
+            background-image: url("img/bg_product_h2hr.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+       @media(max-width: 360px){
+           .product_Rec_content{
+               padding: 20px calc((50% - 160px) / 2);
+           }
+           .product_Rec,.product_Cas{
+               min-width: 160px;
+               height: 186px;
+           }
+           .product_Rec a,.product_Cas a{
+               width: 160px;
+               height: 186px;
+           }
+       }
+    </style>
+</head>
+<body>
+<div class="product_header">
+    <div class="product_Rec">
+        <a class="rec act" href="javascript:;">
+            <img src="img/bg_product_Rec.png"/>
+        </a>
+    </div>
+    <div class="product_Cas">
+        <a class="cas" href="javascript:;">
+            <img src="img/bg_product_Cas.png"/>
+        </a>
+    </div>
+</div>
+<div class="product_main">
+    <div class="product_Rec_content">
+        <h2>轻量付收款码</h2>
+        <p class="bg_h2Hr"></p>
+        <p>轻量付收款码介绍说明：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto possimus ut voluptatem? Accusamus alias aliquam architecto atque deleniti dolore, dolorem ducimus ea expedita fugit iure, odio, reprehenderit totam vitae voluptatibus?</p>
+        <p><br/></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolorem est facere ipsa quis rem tenetur voluptatibus. Enim, ex id laudantium nisi, non obcaecati porro tempora totam vero voluptatem, voluptatibus!</p>
+    </div>
+    <div class="product_Cas_content" style="display: none;">
+        <h2>点餐猫只能收银系统</h2>
+        <p class="bg_h2Hr"></p>
+        <p>点餐猫只能收银系统介绍说明：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto possimus ut voluptatem? Accusamus alias aliquam architecto atque deleniti dolore, dolorem ducimus ea expedita fugit iure, odio, reprehenderit totam vitae voluptatibus?</p>
+        <p><br/></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolorem est facere ipsa quis rem tenetur voluptatibus. Enim, ex id laudantium nisi, non obcaecati porro tempora totam vero voluptatem, voluptatibus!</p>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.product_header').on('click','a',function () {
+            $('.product_header a.act').removeClass('act');
+            $(this).addClass('act');
+            if($(this).hasClass('rec')){//如果点击的是“轻量付”
+                $('.product_Cas_content').slideUp(200);
+                $('.product_Rec_content').slideDown(200);
+            }
+            if($(this).hasClass('cas')){//如果点击的是“收银系统”
+                $('.product_Rec_content').slideUp(200);
+                $('.product_Cas_content').slideDown(200);
+            }
+        });
+    });
+</script>
+</body>
+</html>

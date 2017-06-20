@@ -19,6 +19,7 @@ public class QRCodeXMLDecoder {
 	public static String getXMLInfo(String xml, String paraExpected){
 
 		String code_url;
+		String out_trade_no;
 				
 		try {
 			Document doc= DocumentHelper.parseText(xml);
@@ -32,6 +33,11 @@ public class QRCodeXMLDecoder {
 				if(elementList.get(i).getName().equals("code_url") && paraExpected.equals("code_url")){
 					code_url=elementList.get(i).getTextTrim();
 					return code_url;			
+				}	
+				
+				if(elementList.get(i).getName().equals("out_trade_no") && paraExpected.equals("out_trade_no")){
+					out_trade_no=elementList.get(i).getTextTrim();
+					return out_trade_no;			
 				}	
 				
 			}

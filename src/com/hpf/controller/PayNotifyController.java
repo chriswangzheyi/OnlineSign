@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hpf.model.PayNotifyModel;
+import com.hpf.util.HttpsRequest;
 import com.hpf.util.PayNotifyXMLDecoder;  
 
 
@@ -62,6 +63,15 @@ public class PayNotifyController {
 	    	PayNotifyModel.setOut_trade_no(out_trade_no);
 	    	PayNotifyModel.setTime_end(time_end);
 	    	
+	    	//通知威富通支付成功
+		    	try {
+					String responsexml = HttpsRequest.HttpsRequest("https://pay.swiftpass.cn/pay/gateway", "POST", "success");
+					System.out.println("返回的结果是="+responsexml);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	
 	    	}
 	    	
 	    	}
@@ -71,7 +81,8 @@ public class PayNotifyController {
 			logger.error("微信支付结果返回出错，",e);
 		}
     	
-				return payresult; 
+    	System.out.println("PayNotifyModel.getPay_result()="+PayNotifyModel.getPay_result());
+				return PayNotifyModel.getOut_trade_no(); 
     }
       
 

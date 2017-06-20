@@ -28,7 +28,7 @@ public class WechatPay {
 	@Autowired
 	PayModel payModel;
 	
-	public String Wchatpayment(){
+	public String Wchatpayment(String expectedParameter){
 		
 		//参数
 		String service="pay.weixin.native";
@@ -37,8 +37,8 @@ public class WechatPay {
 		String body="测试"; //商品描述
 		int total_fee=1; //总金额,单位为分
 		String mch_create_ip="218.70.106.206";
-		//String notify_url="http://1q73x43283.51mypc.cn:11191/paynotify";
-		String notify_url="http://merchant.register.hme.cn/paynotify";
+		String notify_url="http://1q73x43283.51mypc.cn:11191/paynotify";
+		//String notify_url="http://merchant.register.hme.cn/paynotify";
 		String key="9d101c97133837e13dde2d32a5054abb";
 		String nonce_str=Generator.getRandomNonceStr(32);
 
@@ -78,8 +78,15 @@ public class WechatPay {
 			String responsexml = HttpsRequest.HttpsRequest("https://pay.swiftpass.cn/pay/gateway", "POST", requestxml);
 			
 			//解码
+			if(expectedParameter.equals("codeurl")){
 			payModel.setCode_url(QRCodeXMLDecoder.getXMLInfo(responsexml, "code_url"));
 			return QRCodeXMLDecoder.getXMLInfo(responsexml, "code_url");
+			}
+			
+			if(expectedParameter.equals("out_trade_no")){
+				payModel.setOut_trade_no(QRCodeXMLDecoder.getXMLInfo(responsexml, "out_trade_no"));
+			return QRCodeXMLDecoder.getXMLInfo(responsexml, "out_trade_no");
+			}
 			
 			
 		} catch (Exception e) {

@@ -58,8 +58,12 @@ public class StepsController {
     public String home(ModelMap model,HttpServletRequest request) { 
 
     	//生成微信支付码
-    	String codeurl=WechatPay.Wchatpayment(); 
+    	String codeurl=WechatPay.Wchatpayment("codeurl"); 
     	request.setAttribute("qrcodeurl",codeurl);
+    	
+    	//生成out_trade_no
+    	String out_trade_no=WechatPay.Wchatpayment("out_trade_no"); 
+    	request.setAttribute("out_trade_no",out_trade_no);
     	
     	//读取餐厅类型   	
     	List<?> typelist =stepsdao.GetRestaurantType(TypeModel);
